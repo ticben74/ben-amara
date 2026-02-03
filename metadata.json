@@ -1,0 +1,9 @@
+{
+  "name": "Creative Urban Interventionsv2",
+  "description": "An interactive showcase of innovative urban audio interventions including story benches, visual frequency murals, and immersive walking paths.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone",
+    "geolocation"
+  ]
+}
