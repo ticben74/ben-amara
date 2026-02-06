@@ -8,7 +8,7 @@ const PALETTES: Record<string, { name: string; description: string; colors: Pale
     name: 'أضواء النيون',
     description: 'أجواء صاخبة تعكس نبض المدينة المتسارع والاحتفالي',
     colors: [
-      { hex: '#14b8a6', glow: 'rgba(99, 102, 241, 0.6)' },
+      { hex: '#14b8a6', glow: 'rgba(13, 148, 136, 0.6)' },
       { hex: '#a855f7', glow: 'rgba(168, 85, 247, 0.6)' },
       { hex: '#ec4899', glow: 'rgba(236, 72, 153, 0.6)' },
       { hex: '#f43f5e', glow: 'rgba(244, 63, 94, 0.6)' },
@@ -495,14 +495,14 @@ export const MuralVisualizer: React.FC = () => {
           border-radius: 50%;
           background: #14b8a6;
           cursor: pointer;
-          box-shadow: 0 0 10px rgba(99, 102, 241, 0.4);
+          box-shadow: 0 0 10px rgba(13, 148, 136, 0.4);
           border: 2px solid white;
           margin-top: -7px;
           transition: all 0.2s;
         }
         input[type=range]::-webkit-slider-thumb:hover {
           transform: scale(1.2);
-          box-shadow: 0 0 15px rgba(99, 102, 241, 0.6);
+          box-shadow: 0 0 15px rgba(13, 148, 136, 0.6);
         }
         input[type=range]::-webkit-slider-runnable-track {
           width: 100%;

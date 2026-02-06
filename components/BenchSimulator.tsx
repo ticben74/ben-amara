@@ -295,7 +295,7 @@ export const BenchSimulator: React.FC = () => {
                       style={{ 
                         height: isSitting ? `${12 + (volume * (0.5 + Math.sin(i * 0.25) * 1.5))}px` : '4px',
                         opacity: isSitting ? 0.9 : 0.08,
-                        boxShadow: isSitting ? '0 0 25px rgba(99, 102, 241, 0.5)' : 'none'
+                        boxShadow: isSitting ? '0 0 25px rgba(13, 148, 136, 0.5)' : 'none'
                       }}
                     ></div>
                   ))}
