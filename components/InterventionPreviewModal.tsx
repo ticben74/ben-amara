@@ -43,7 +43,7 @@ export const InterventionPreviewModal: React.FC<Props> = ({ item, isOpen, onClos
           
           <div className="absolute top-8 left-8 flex gap-2">
              <span className={`px-4 py-2 rounded-full text-[9px] font-black uppercase tracking-widest shadow-xl backdrop-blur-md border 
-               ${item.authorType === 'artist' ? 'bg-emerald-600/80 border-emerald-500/30' : item.authorType === 'ai' ? 'bg-teal-600/80 border-teal-500/30' : 'bg-amber-600/80 border-amber-500/30'}`}>
+               ${item.authorType === 'artist' ? 'bg-emerald-600/80 border-emerald-500/30' : item.authorType === 'ai' ? 'bg-indigo-600/80 border-indigo-500/30' : 'bg-amber-600/80 border-amber-500/30'}`}>
                {item.authorType === 'artist' ? 'ريشة فنان' : item.authorType === 'ai' ? 'ذكاء اصطناعي' : 'إبداع هجين ✨'}
              </span>
           </div>
@@ -51,7 +51,7 @@ export const InterventionPreviewModal: React.FC<Props> = ({ item, isOpen, onClos
           <div className="absolute bottom-10 right-10 text-right z-10 space-y-2">
             <h2 className="text-4xl font-black text-white leading-tight">{item.location.split('،')[0]}</h2>
             {item.artistName && (
-              <p className="text-teal-300 font-bold text-lg">بواسطة الفنان: {item.artistName}</p>
+              <p className="text-indigo-300 font-bold text-lg">بواسطة الفنان: {item.artistName}</p>
             )}
           </div>
         </div>
@@ -63,13 +63,13 @@ export const InterventionPreviewModal: React.FC<Props> = ({ item, isOpen, onClos
                <button onClick={onClose} className="p-3 bg-slate-800 hover:bg-white hover:text-slate-950 rounded-2xl transition-all shadow-xl">×</button>
                <div className="text-right">
                   <span className="text-[10px] font-black text-slate-500 uppercase tracking-[0.4em] block mb-2">رؤية المنسق الثقافي</span>
-                  <div className="h-1 w-12 bg-teal-500 mr-0 ml-auto rounded-full"></div>
+                  <div className="h-1 w-12 bg-indigo-500 mr-0 ml-auto rounded-full"></div>
                </div>
             </div>
 
             {item.curatorNote ? (
               <div className="space-y-4 animate-fade-in">
-                 <p className="font-amiri text-3xl text-slate-100 leading-relaxed italic pr-6 border-r-2 border-teal-500/20">
+                 <p className="font-amiri text-3xl text-slate-100 leading-relaxed italic pr-6 border-r-2 border-indigo-500/20">
                    "{item.curatorNote}"
                  </p>
               </div>
@@ -80,7 +80,7 @@ export const InterventionPreviewModal: React.FC<Props> = ({ item, isOpen, onClos
             <div className="space-y-6 pt-10 border-t border-slate-800/50">
               <h3 className="text-lg font-black text-white flex items-center gap-3 justify-end">
                 خلفية تاريخية ومكانية 
-                <span className="w-2 h-2 rounded-full bg-teal-500 animate-pulse"></span>
+                <span className="w-2 h-2 rounded-full bg-indigo-500 animate-pulse"></span>
               </h3>
               {loading ? (
                 <div className="space-y-3">
@@ -98,7 +98,7 @@ export const InterventionPreviewModal: React.FC<Props> = ({ item, isOpen, onClos
           <div className="pt-10 flex flex-col sm:flex-row-reverse gap-4">
             <button 
               onClick={() => { onStartExperience(item.type); onClose(); }}
-              className="flex-1 bg-teal-600 hover:bg-teal-500 text-white py-6 rounded-[2rem] font-black text-sm uppercase tracking-[0.2em] shadow-3xl shadow-teal-600/30 transition-all active:scale-95"
+              className="flex-1 bg-indigo-600 hover:bg-indigo-500 text-white py-6 rounded-[2rem] font-black text-sm uppercase tracking-[0.2em] shadow-3xl shadow-indigo-600/30 transition-all active:scale-95"
             >
               دخول التجربة الغامرة 🎧
             </button>

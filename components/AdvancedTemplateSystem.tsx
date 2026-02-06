@@ -119,8 +119,8 @@ export const AdvancedTemplateSystem: React.FC<Props> = ({ onComplete }) => {
         theme: 'heritage',
         city: 'القاهرة',
         ui_config: {
-          primaryColor: '#0d9488',
-          accentColor: '#14b8a6',
+          primaryColor: '#4f46e5',
+          accentColor: '#818cf8',
           fontFamily: 'Cairo',
           viewMode: 'map',
           buttonShape: 'pill',
@@ -154,11 +154,11 @@ export const AdvancedTemplateSystem: React.FC<Props> = ({ onComplete }) => {
             key={t.id}
             onClick={() => { setSelectedTemplate(t); setValues({}); }}
             className={`p-10 rounded-[3.5rem] border-2 text-right transition-all group relative overflow-hidden
-              ${selectedTemplate?.id === t.id ? 'border-teal-500 bg-teal-500/10 shadow-3xl' : 'border-slate-800 bg-slate-900/40 hover:border-slate-700'}`}
+              ${selectedTemplate?.id === t.id ? 'border-indigo-500 bg-indigo-500/10 shadow-3xl' : 'border-slate-800 bg-slate-900/40 hover:border-slate-700'}`}
           >
             <div className="flex justify-between items-start mb-6">
               <span className="text-5xl">{t.icon}</span>
-              <span className="bg-teal-950 text-teal-400 text-[8px] font-black uppercase px-3 py-1 rounded-full border border-teal-500/20">{t.category}</span>
+              <span className="bg-indigo-950 text-indigo-400 text-[8px] font-black uppercase px-3 py-1 rounded-full border border-indigo-500/20">{t.category}</span>
             </div>
             <h4 className="text-2xl font-black text-white mb-3">{t.name}</h4>
             <p className="text-sm text-slate-400 leading-relaxed font-medium">{t.description}</p>
@@ -195,7 +195,7 @@ export const AdvancedTemplateSystem: React.FC<Props> = ({ onComplete }) => {
                     <select 
                       value={values[v.name] || v.default}
                       onChange={e => setValues({...values, [v.name]: e.target.value})}
-                      className="w-full bg-slate-950 border border-slate-800 rounded-2xl px-6 py-4 text-white font-bold outline-none focus:border-teal-500 transition-all appearance-none cursor-pointer"
+                      className="w-full bg-slate-950 border border-slate-800 rounded-2xl px-6 py-4 text-white font-bold outline-none focus:border-indigo-500 transition-all appearance-none cursor-pointer"
                     >
                       {v.options?.map(opt => <option key={opt} value={opt}>{opt}</option>)}
                     </select>
@@ -205,7 +205,7 @@ export const AdvancedTemplateSystem: React.FC<Props> = ({ onComplete }) => {
                       placeholder={v.default}
                       value={values[v.name] || ''}
                       onChange={e => setValues({...values, [v.name]: e.target.value})}
-                      className="w-full bg-slate-950 border border-slate-800 rounded-2xl px-6 py-4 text-white font-bold outline-none focus:border-teal-500 transition-all shadow-inner text-right"
+                      className="w-full bg-slate-950 border border-slate-800 rounded-2xl px-6 py-4 text-white font-bold outline-none focus:border-indigo-500 transition-all shadow-inner text-right"
                     />
                   )}
                 </div>
@@ -214,7 +214,7 @@ export const AdvancedTemplateSystem: React.FC<Props> = ({ onComplete }) => {
 
            <button 
              onClick={handleGenerate}
-             className="w-full bg-teal-600 hover:bg-teal-500 text-white py-6 rounded-[2.5rem] font-black text-sm uppercase tracking-[0.2em] shadow-3xl shadow-teal-600/30 transition-all active:scale-95"
+             className="w-full bg-indigo-600 hover:bg-indigo-500 text-white py-6 rounded-[2.5rem] font-black text-sm uppercase tracking-[0.2em] shadow-3xl shadow-indigo-600/30 transition-all active:scale-95"
            >
              🚀 إطلاق معالج التوليد الذكي
            </button>
@@ -223,11 +223,11 @@ export const AdvancedTemplateSystem: React.FC<Props> = ({ onComplete }) => {
 
       {/* Progress & Generation Overlay */}
       {isGenerating && (
-        <div className="bg-slate-900/80 p-20 rounded-[5rem] border border-teal-500/20 text-center space-y-12 backdrop-blur-3xl animate-pulse">
+        <div className="bg-slate-900/80 p-20 rounded-[5rem] border border-indigo-500/20 text-center space-y-12 backdrop-blur-3xl animate-pulse">
            <div className="relative w-40 h-40 mx-auto">
               <svg className="w-full h-full -rotate-90">
                  <circle cx="80" cy="80" r="70" stroke="currentColor" strokeWidth="8" fill="transparent" className="text-slate-800" />
-                 <circle cx="80" cy="80" r="70" stroke="currentColor" strokeWidth="8" fill="transparent" className="text-teal-500 transition-all duration-500" strokeDasharray="440" strokeDashoffset={440 - (440 * progress) / 100} strokeLinecap="round" />
+                 <circle cx="80" cy="80" r="70" stroke="currentColor" strokeWidth="8" fill="transparent" className="text-indigo-500 transition-all duration-500" strokeDasharray="440" strokeDashoffset={440 - (440 * progress) / 100} strokeLinecap="round" />
               </svg>
               <div className="absolute inset-0 flex items-center justify-center">
                  <span className="text-3xl font-black text-white">{progress}%</span>
@@ -240,7 +240,7 @@ export const AdvancedTemplateSystem: React.FC<Props> = ({ onComplete }) => {
            </div>
 
            <div className="flex gap-2 justify-center">
-              {[...Array(5)].map((_, i) => <div key={i} className="w-1.5 h-1.5 rounded-full bg-teal-500" style={{ animation: `bounce 1s infinite ${i * 0.1}s` }}></div>)}
+              {[...Array(5)].map((_, i) => <div key={i} className="w-1.5 h-1.5 rounded-full bg-indigo-500" style={{ animation: `bounce 1s infinite ${i * 0.1}s` }}></div>)}
            </div>
         </div>
       )}

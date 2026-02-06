@@ -8,7 +8,7 @@ const PALETTES: Record<string, { name: string; description: string; colors: Pale
     name: 'أضواء النيون',
     description: 'أجواء صاخبة تعكس نبض المدينة المتسارع والاحتفالي',
     colors: [
-      { hex: '#14b8a6', glow: 'rgba(13, 148, 136, 0.6)' },
+      { hex: '#6366f1', glow: 'rgba(99, 102, 241, 0.6)' },
       { hex: '#a855f7', glow: 'rgba(168, 85, 247, 0.6)' },
       { hex: '#ec4899', glow: 'rgba(236, 72, 153, 0.6)' },
       { hex: '#f43f5e', glow: 'rgba(244, 63, 94, 0.6)' },
@@ -221,12 +221,12 @@ export const MuralVisualizer: React.FC = () => {
   return (
     <div className={`p-8 bg-slate-900 rounded-3xl border transition-all duration-700 h-full flex flex-col items-center overflow-hidden relative
       ${isListening 
-        ? 'border-teal-500/50 shadow-[0_0_80px_-20px_rgba(99,102,241,0.6)] ring-2 ring-teal-500/10' 
+        ? 'border-indigo-500/50 shadow-[0_0_80px_-20px_rgba(99,102,241,0.6)] ring-2 ring-indigo-500/10' 
         : 'border-slate-800 shadow-none'}`}
     >
-      <div className={`absolute top-4 left-4 z-50 flex items-center gap-2 bg-slate-800/80 backdrop-blur-md border px-3 py-1.5 rounded-full transition-all duration-500 ${isListening ? 'border-teal-500/40 opacity-100' : 'border-slate-700 opacity-0 translate-y-[-10px]'}`}>
-         <span className="w-2 h-2 rounded-full bg-teal-500 animate-ping"></span>
-         <span className="text-[10px] font-black text-teal-400 uppercase tracking-[0.2em]">تحليل مباشر</span>
+      <div className={`absolute top-4 left-4 z-50 flex items-center gap-2 bg-slate-800/80 backdrop-blur-md border px-3 py-1.5 rounded-full transition-all duration-500 ${isListening ? 'border-indigo-500/40 opacity-100' : 'border-slate-700 opacity-0 translate-y-[-10px]'}`}>
+         <span className="w-2 h-2 rounded-full bg-indigo-500 animate-ping"></span>
+         <span className="text-[10px] font-black text-indigo-400 uppercase tracking-[0.2em]">تحليل مباشر</span>
       </div>
 
       <div className="grid grid-cols-8 md:grid-cols-12 gap-3 w-full mb-10">
@@ -263,7 +263,7 @@ export const MuralVisualizer: React.FC = () => {
             <div 
               key={i} 
               className={`aspect-square rounded-xl transition-all duration-700 cursor-pointer 
-                hover:scale-125 hover:z-20 hover:opacity-100 hover:shadow-2xl hover:shadow-teal-500/40
+                hover:scale-125 hover:z-20 hover:opacity-100 hover:shadow-2xl hover:shadow-indigo-500/40
                 ${isListening ? 'animate-mural-active' : 'hover:bg-slate-700'}`}
               style={{ 
                 backgroundColor: isListening ? colorObj.hex : '#1e293b',
@@ -301,7 +301,7 @@ export const MuralVisualizer: React.FC = () => {
                   onMouseLeave={() => setHoveredPalette(null)}
                   className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl transition-all cursor-help border
                     ${(hoveredPalette === key || (activePalette === key && !hoveredPalette))
-                      ? 'bg-teal-500/10 border-teal-500/30 ring-1 ring-teal-500/20' 
+                      ? 'bg-indigo-500/10 border-indigo-500/30 ring-1 ring-indigo-500/20' 
                       : 'bg-transparent border-transparent opacity-60 hover:opacity-100'}`}
                 >
                   <div className="flex -space-x-1 rtl:space-x-reverse">
@@ -309,7 +309,7 @@ export const MuralVisualizer: React.FC = () => {
                       <div key={i} className="w-2.5 h-2.5 rounded-full border border-slate-900 shadow-sm" style={{backgroundColor: c.hex}} />
                     ))}
                   </div>
-                  <span className={`text-[10px] font-black uppercase tracking-widest ${hoveredPalette === key || activePalette === key ? 'text-teal-300' : 'text-slate-500'}`}>
+                  <span className={`text-[10px] font-black uppercase tracking-widest ${hoveredPalette === key || activePalette === key ? 'text-indigo-300' : 'text-slate-500'}`}>
                     {p.name}
                   </span>
                 </div>
@@ -323,7 +323,7 @@ export const MuralVisualizer: React.FC = () => {
               
               <div className="flex items-center gap-2 justify-end animate-fade-in" key={hoveredPalette || activePalette}>
                 <span className={`text-[10px] font-bold px-3 py-1.5 rounded-lg border shadow-sm transition-all duration-300
-                  ${hoveredPalette ? 'bg-teal-500/20 text-teal-200 border-teal-500/40 animate-pulse' : 'bg-teal-500/10 text-teal-300 border-teal-500/20'}`}>
+                  ${hoveredPalette ? 'bg-indigo-500/20 text-indigo-200 border-indigo-500/40 animate-pulse' : 'bg-indigo-500/10 text-indigo-300 border-indigo-500/20'}`}>
                   {currentInfo.description}
                 </span>
               </div>
@@ -338,7 +338,7 @@ export const MuralVisualizer: React.FC = () => {
                   onClick={() => setActivePalette(key as keyof typeof PALETTES)}
                   className={`flex items-center gap-2 px-4 py-2.5 rounded-2xl border transition-all duration-300
                     ${activePalette === key 
-                      ? 'bg-teal-600/20 border-teal-500 text-teal-300 shadow-lg shadow-teal-500/10 scale-105' 
+                      ? 'bg-indigo-600/20 border-indigo-500 text-indigo-300 shadow-lg shadow-indigo-500/10 scale-105' 
                       : 'bg-slate-800/40 border-slate-700 text-slate-400 hover:border-slate-500 hover:bg-slate-800/60'}`}
                 >
                   <div className="flex -space-x-1.5 rtl:space-x-reverse">
@@ -366,14 +366,14 @@ export const MuralVisualizer: React.FC = () => {
                 <button 
                   onClick={() => setSpeedMode('dynamic')}
                   className={`px-4 py-1.5 rounded-lg text-[10px] font-black uppercase tracking-wider transition-all
-                    ${speedMode === 'dynamic' ? 'bg-teal-600 text-white shadow-lg' : 'text-slate-500 hover:text-slate-300'}`}
+                    ${speedMode === 'dynamic' ? 'bg-indigo-600 text-white shadow-lg' : 'text-slate-500 hover:text-slate-300'}`}
                 >
                   تفاعل صوتي
                 </button>
                 <button 
                   onClick={() => setSpeedMode('manual')}
                   className={`px-4 py-1.5 rounded-lg text-[10px] font-black uppercase tracking-wider transition-all
-                    ${speedMode === 'manual' ? 'bg-teal-600 text-white shadow-lg' : 'text-slate-500 hover:text-slate-300'}`}
+                    ${speedMode === 'manual' ? 'bg-indigo-600 text-white shadow-lg' : 'text-slate-500 hover:text-slate-300'}`}
                 >
                   يدوي ثابت
                 </button>
@@ -391,10 +391,10 @@ export const MuralVisualizer: React.FC = () => {
                     step="0.1" 
                     value={manualDuration}
                     onChange={(e) => setManualDuration(parseFloat(e.target.value))}
-                    className="w-full h-1.5 bg-slate-700 rounded-full appearance-none cursor-pointer accent-teal-500 outline-none hover:bg-slate-600 transition-all"
+                    className="w-full h-1.5 bg-slate-700 rounded-full appearance-none cursor-pointer accent-indigo-500 outline-none hover:bg-slate-600 transition-all"
                   />
                   <div 
-                    className="absolute top-0 px-2 py-1 bg-teal-600 text-white text-[9px] font-black rounded-md -translate-y-full opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"
+                    className="absolute top-0 px-2 py-1 bg-indigo-600 text-white text-[9px] font-black rounded-md -translate-y-full opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"
                     style={{ left: `calc(${(manualDuration - 0.1) / 4.9 * 100}% - 15px)` }}
                   >
                     {manualDuration}s
@@ -411,7 +411,7 @@ export const MuralVisualizer: React.FC = () => {
           className={`px-10 py-5 rounded-2xl flex items-center gap-3 mx-auto transition-all shadow-xl group relative overflow-hidden font-black uppercase tracking-widest
             ${isListening 
               ? 'bg-red-500/20 text-red-400 border border-red-500/40 hover:bg-red-500/30 shadow-[0_0_30px_rgba(239,68,68,0.3)]' 
-              : 'bg-teal-600 text-white hover:bg-teal-500 hover:scale-105 active:scale-95'}`}
+              : 'bg-indigo-600 text-white hover:bg-indigo-500 hover:scale-105 active:scale-95'}`}
         >
           {isListening ? (
             <>
@@ -428,11 +428,11 @@ export const MuralVisualizer: React.FC = () => {
           )}
         </button>
 
-        <div className="mt-8 p-10 bg-slate-800/60 rounded-[3rem] border border-slate-700/50 flex flex-col md:flex-row items-center gap-12 text-right group hover:border-teal-500/40 transition-all duration-500 relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-teal-500/5 blur-[80px] -mr-32 -mt-32 rounded-full pointer-events-none"></div>
+        <div className="mt-8 p-10 bg-slate-800/60 rounded-[3rem] border border-slate-700/50 flex flex-col md:flex-row items-center gap-12 text-right group hover:border-indigo-500/40 transition-all duration-500 relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-500/5 blur-[80px] -mr-32 -mt-32 rounded-full pointer-events-none"></div>
           
           <div className="shrink-0 relative">
-            <div className="absolute -inset-10 bg-teal-500/20 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity rounded-full"></div>
+            <div className="absolute -inset-10 bg-indigo-500/20 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity rounded-full"></div>
             <div className="bg-white p-4 rounded-[2.5rem] relative shadow-2xl transform transition-transform group-hover:rotate-1 group-hover:scale-105 overflow-hidden">
               <img 
                 src={`https://api.qrserver.com/v1/create-qr-code/?size=800x800&data=${encodeURIComponent(shareUrl)}&color=0f172a`} 
@@ -444,9 +444,9 @@ export const MuralVisualizer: React.FC = () => {
           
           <div className="space-y-6 flex-1">
             <div className="space-y-3">
-              <h5 className="text-teal-300 font-black text-2xl flex items-center gap-2 justify-end">
+              <h5 className="text-indigo-300 font-black text-2xl flex items-center gap-2 justify-end">
                 استكشف الطيف الصوتي الرقمي
-                <svg className="w-6 h-6 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-6 h-6 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
               </h5>
@@ -461,7 +461,7 @@ export const MuralVisualizer: React.FC = () => {
                 className={`flex items-center gap-3 px-8 py-4 rounded-2xl transition-all text-sm font-black uppercase tracking-[0.15em] relative overflow-hidden group/btn active:scale-95
                   ${shareStatus !== 'idle' 
                     ? 'bg-emerald-500 text-white shadow-xl shadow-emerald-500/20' 
-                    : 'bg-teal-600 text-white hover:bg-teal-500 shadow-lg shadow-teal-600/30'}`}
+                    : 'bg-indigo-600 text-white hover:bg-indigo-500 shadow-lg shadow-indigo-600/30'}`}
               >
                 {shareStatus === 'copied' ? (
                   <span className="flex items-center gap-2 animate-fade-in">
@@ -493,16 +493,16 @@ export const MuralVisualizer: React.FC = () => {
           height: 20px;
           width: 20px;
           border-radius: 50%;
-          background: #14b8a6;
+          background: #6366f1;
           cursor: pointer;
-          box-shadow: 0 0 10px rgba(13, 148, 136, 0.4);
+          box-shadow: 0 0 10px rgba(99, 102, 241, 0.4);
           border: 2px solid white;
           margin-top: -7px;
           transition: all 0.2s;
         }
         input[type=range]::-webkit-slider-thumb:hover {
           transform: scale(1.2);
-          box-shadow: 0 0 15px rgba(13, 148, 136, 0.6);
+          box-shadow: 0 0 15px rgba(99, 102, 241, 0.6);
         }
         input[type=range]::-webkit-slider-runnable-track {
           width: 100%;

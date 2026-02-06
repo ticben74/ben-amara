@@ -129,7 +129,7 @@ export const VisitorGallery: React.FC<Props> = ({ onExplore }) => {
   return (
     <div className="animate-fade-in space-y-12 pb-20">
       <div className="text-center space-y-4">
-        <h2 className="text-4xl font-black text-white">معرض <span className="text-teal-500">الزوار الرقمي</span></h2>
+        <h2 className="text-4xl font-black text-white">معرض <span className="text-indigo-500">الزوار الرقمي</span></h2>
         <p className="text-slate-400 max-w-2xl mx-auto font-medium">
           نحتفي هنا بالمساهمات الإبداعية لزوارنا التي توثق روح المكان.
         </p>
@@ -150,7 +150,7 @@ export const VisitorGallery: React.FC<Props> = ({ onExplore }) => {
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
             <div className="absolute inset-0 p-8 flex flex-col justify-end text-right">
               <h3 className="text-xl font-black text-white mb-1">{item.title}</h3>
-              <p className="text-teal-400 text-xs font-bold mb-4">بواسطة: {item.visitorName}</p>
+              <p className="text-indigo-400 text-xs font-bold mb-4">بواسطة: {item.visitorName}</p>
               <p className="text-slate-200 text-sm italic font-amiri opacity-0 group-hover:opacity-100 transition-all duration-500">
                 "{item.quote}"
               </p>
@@ -159,11 +159,11 @@ export const VisitorGallery: React.FC<Props> = ({ onExplore }) => {
         ))}
       </div>
 
-      <div className="bg-teal-600/5 border border-teal-500/10 rounded-[4rem] p-16 text-center space-y-6">
+      <div className="bg-indigo-600/5 border border-indigo-500/10 rounded-[4rem] p-16 text-center space-y-6">
          <h3 className="text-2xl font-black text-white">شاركنا تجربتك الإبداعية</h3>
          <button 
            onClick={() => setIsModalOpen(true)}
-           className="bg-teal-600 hover:bg-teal-500 text-white px-12 py-5 rounded-[2rem] font-black text-sm uppercase tracking-widest shadow-2xl transition-all"
+           className="bg-indigo-600 hover:bg-indigo-500 text-white px-12 py-5 rounded-[2rem] font-black text-sm uppercase tracking-widest shadow-2xl transition-all"
          >
            نشر وسائط جديدة
          </button>
@@ -174,7 +174,7 @@ export const VisitorGallery: React.FC<Props> = ({ onExplore }) => {
           <div className="bg-slate-900 border border-slate-800 rounded-[3rem] max-w-xl w-full overflow-hidden shadow-3xl">
             <div className="p-8 border-b border-slate-800 flex items-center justify-between">
               <button onClick={() => setIsModalOpen(false)} className="p-2 text-slate-500 hover:text-white">×</button>
-              <h4 className="text-xl font-black text-white">إضافة <span className="text-teal-500">مشاركة</span></h4>
+              <h4 className="text-xl font-black text-white">إضافة <span className="text-indigo-500">مشاركة</span></h4>
             </div>
 
             <form onSubmit={handleSubmit} className="p-8 space-y-6">
@@ -183,7 +183,7 @@ export const VisitorGallery: React.FC<Props> = ({ onExplore }) => {
               
               <div 
                 onClick={() => fileInputRef.current?.click()}
-                className="border-2 border-dashed border-slate-700 rounded-2xl p-6 flex flex-col items-center justify-center cursor-pointer hover:border-teal-500/50"
+                className="border-2 border-dashed border-slate-700 rounded-2xl p-6 flex flex-col items-center justify-center cursor-pointer hover:border-indigo-500/50"
               >
                 <input type="file" ref={fileInputRef} className="hidden" accept="image/*,video/*" onChange={handleFileChange} />
                 {formData.previewUrl ? (
@@ -198,7 +198,7 @@ export const VisitorGallery: React.FC<Props> = ({ onExplore }) => {
               <button 
                 type="submit" 
                 disabled={isSubmitting || !formData.mediaFile}
-                className="w-full py-4 rounded-xl bg-teal-600 text-white font-black text-sm uppercase flex items-center justify-center gap-3"
+                className="w-full py-4 rounded-xl bg-indigo-600 text-white font-black text-sm uppercase flex items-center justify-center gap-3"
               >
                 {isSubmitting ? (
                   <>

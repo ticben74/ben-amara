@@ -173,13 +173,13 @@ export const ExperienceGenerator: React.FC<Props> = ({ onComplete }) => {
 
   if (generatedItem) {
     return (
-      <div className="max-w-4xl mx-auto p-12 bg-slate-900/80 rounded-[4rem] border border-teal-500/30 text-right animate-fade-in shadow-4xl backdrop-blur-2xl relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-teal-500 to-teal-600"></div>
+      <div className="max-w-4xl mx-auto p-12 bg-slate-900/80 rounded-[4rem] border border-purple-500/30 text-right animate-fade-in shadow-4xl backdrop-blur-2xl relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-purple-500 to-indigo-600"></div>
         
         <div className="flex flex-col items-center gap-10">
           <div className="w-20 h-20 bg-emerald-500 text-white rounded-full flex items-center justify-center text-4xl shadow-2xl animate-bounce">✓</div>
           <div className="text-center space-y-2">
-            <h2 className="text-4xl font-black text-white">تم إنشاء <span className="text-teal-400">التجربة بنجاح</span></h2>
+            <h2 className="text-4xl font-black text-white">تم إنشاء <span className="text-purple-400">التجربة بنجاح</span></h2>
             <p className="text-slate-400">التدخل الفني الآن حيّ وجاهز للإرساء الميداني.</p>
           </div>
 
@@ -194,14 +194,14 @@ export const ExperienceGenerator: React.FC<Props> = ({ onComplete }) => {
                 <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest block">رابط صفحة الهبوط العامة</label>
                 <div 
                   onClick={copyLink}
-                  className="bg-slate-900 p-4 rounded-xl border border-slate-800 font-mono text-[9px] text-teal-400 break-all select-all hover:bg-slate-800 transition-colors cursor-pointer relative overflow-hidden"
+                  className="bg-slate-900 p-4 rounded-xl border border-slate-800 font-mono text-[9px] text-purple-400 break-all select-all hover:bg-slate-800 transition-colors cursor-pointer relative overflow-hidden"
                 >
                   {landingUrl}
                   {copied && <div className="absolute inset-0 bg-emerald-500 flex items-center justify-center text-white font-black">تم النسخ!</div>}
                 </div>
               </div>
 
-              <div className="p-6 bg-teal-500/10 rounded-2xl border border-teal-500/20">
+              <div className="p-6 bg-purple-500/10 rounded-2xl border border-purple-500/20">
                 <h4 className="font-black text-white mb-2 text-xs">معاينة السرد</h4>
                 <p className="text-sm text-slate-300 font-amiri leading-relaxed line-clamp-3 italic">"{generatedItem.curatorNote}"</p>
               </div>
@@ -213,7 +213,7 @@ export const ExperienceGenerator: React.FC<Props> = ({ onComplete }) => {
           <div className="flex gap-4 w-full">
             <button 
               onClick={() => onComplete(generatedItem)}
-              className="flex-1 bg-gradient-to-r from-teal-600 to-teal-600 hover:from-teal-500 hover:to-teal-500 text-white py-6 rounded-[2rem] font-black text-sm uppercase tracking-widest transition-all shadow-xl"
+              className="flex-1 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white py-6 rounded-[2rem] font-black text-sm uppercase tracking-widest transition-all shadow-xl"
             >
               عرض في المنصة 🏛️
             </button>
@@ -232,7 +232,7 @@ export const ExperienceGenerator: React.FC<Props> = ({ onComplete }) => {
   return (
     <div className="space-y-12 animate-fade-in text-right max-w-6xl mx-auto">
       <div className="bg-slate-900/60 p-10 rounded-[4rem] border border-slate-800 text-center space-y-4 shadow-3xl">
-        <h2 className="text-5xl font-black text-white">مولّد <span className="text-teal-500 italic">التجارب الذكي</span></h2>
+        <h2 className="text-5xl font-black text-white">مولّد <span className="text-purple-500 italic">التجارب الذكي</span></h2>
         <p className="text-slate-400 font-medium text-lg">اختر قالباً ودع ذكاء Gemini يشكل ملامح التدخل الحضري القادم.</p>
       </div>
 
@@ -243,12 +243,12 @@ export const ExperienceGenerator: React.FC<Props> = ({ onComplete }) => {
             onClick={() => { setSelectedTemplate(t); setParams({}); }}
             className={`p-10 rounded-[3.5rem] border-2 text-right transition-all group relative overflow-hidden
               ${selectedTemplate?.id === t.id 
-                ? 'border-teal-500 bg-teal-500/10 shadow-3xl' 
+                ? 'border-purple-500 bg-purple-500/10 shadow-3xl' 
                 : 'border-slate-800 bg-slate-900/40 hover:border-slate-700 hover:scale-[1.02]'}`}
           >
             <div className="flex justify-between items-start mb-6">
               <span className="text-6xl group-hover:scale-110 transition-transform">{t.icon}</span>
-              <div className={`w-4 h-4 rounded-full ${selectedTemplate?.id === t.id ? 'bg-teal-500 animate-pulse' : 'bg-slate-800'}`}></div>
+              <div className={`w-4 h-4 rounded-full ${selectedTemplate?.id === t.id ? 'bg-purple-500 animate-pulse' : 'bg-slate-800'}`}></div>
             </div>
             <h4 className="text-3xl font-black text-white mb-2">{t.name}</h4>
             <p className="text-sm text-slate-500 leading-relaxed font-medium">{t.description}</p>
@@ -258,7 +258,7 @@ export const ExperienceGenerator: React.FC<Props> = ({ onComplete }) => {
 
       {selectedTemplate && (
         <div className="bg-slate-900/60 p-12 rounded-[4rem] border border-slate-800 space-y-10 animate-fade-in shadow-4xl relative overflow-hidden backdrop-blur-xl">
-          <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-transparent via-teal-500 to-transparent"></div>
+          <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-transparent via-purple-500 to-transparent"></div>
           
           <div className="flex justify-between items-center border-b border-slate-800/50 pb-8">
              <button onClick={() => setSelectedTemplate(null)} className="text-slate-500 hover:text-white font-black text-xs uppercase tracking-widest transition-colors">إلغاء ×</button>
@@ -273,7 +273,7 @@ export const ExperienceGenerator: React.FC<Props> = ({ onComplete }) => {
                   <select
                     value={params[field.name] || ''}
                     onChange={e => setParams({ ...params, [field.name]: e.target.value })}
-                    className="w-full bg-slate-950 border border-slate-800 rounded-2xl px-6 py-4 text-white text-right outline-none focus:border-teal-500 font-bold"
+                    className="w-full bg-slate-950 border border-slate-800 rounded-2xl px-6 py-4 text-white text-right outline-none focus:border-purple-500 font-bold"
                   >
                     <option value="">اختر {field.label}</option>
                     {field.options?.map(opt => <option key={opt} value={opt}>{opt}</option>)}
@@ -283,7 +283,7 @@ export const ExperienceGenerator: React.FC<Props> = ({ onComplete }) => {
                     placeholder={field.placeholder}
                     value={params[field.name] || ''}
                     onChange={e => setParams({ ...params, [field.name]: e.target.value })}
-                    className="w-full bg-slate-950 border border-slate-800 rounded-2xl px-8 py-5 text-white text-right outline-none focus:border-teal-500 font-bold h-32"
+                    className="w-full bg-slate-950 border border-slate-800 rounded-2xl px-8 py-5 text-white text-right outline-none focus:border-purple-500 font-bold h-32"
                   />
                 ) : (
                   <input
@@ -291,7 +291,7 @@ export const ExperienceGenerator: React.FC<Props> = ({ onComplete }) => {
                     placeholder={field.placeholder}
                     value={params[field.name] || ''}
                     onChange={e => setParams({ ...params, [field.name]: e.target.value })}
-                    className="w-full bg-slate-950 border border-slate-800 rounded-2xl px-8 py-5 text-white text-right outline-none focus:border-teal-500 font-bold"
+                    className="w-full bg-slate-950 border border-slate-800 rounded-2xl px-8 py-5 text-white text-right outline-none focus:border-purple-500 font-bold"
                   />
                 )}
                 {field.helpText && <p className="text-[9px] text-slate-600 font-bold pr-2">{field.helpText}</p>}
@@ -302,7 +302,7 @@ export const ExperienceGenerator: React.FC<Props> = ({ onComplete }) => {
           <button
             onClick={handleGenerate}
             disabled={generating}
-            className="w-full mt-12 bg-gradient-to-r from-teal-600 to-teal-600 text-white py-8 rounded-[2.5rem] font-black text-lg uppercase tracking-[0.3em] shadow-3xl shadow-teal-600/30 transition-all active:scale-95 disabled:opacity-50 group overflow-hidden relative"
+            className="w-full mt-12 bg-gradient-to-r from-purple-600 to-indigo-600 text-white py-8 rounded-[2.5rem] font-black text-lg uppercase tracking-[0.3em] shadow-3xl shadow-purple-600/30 transition-all active:scale-95 disabled:opacity-50 group overflow-hidden relative"
           >
             {generating ? (
               <span className="flex items-center justify-center gap-4 relative z-10">

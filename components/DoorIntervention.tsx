@@ -138,7 +138,7 @@ export const DoorIntervention: React.FC = () => {
   return (
     <div className="p-8 bg-slate-900 rounded-3xl border border-slate-800 h-full flex flex-col items-center justify-between relative overflow-hidden">
       <div className="w-full text-center space-y-4 mb-8">
-        <h4 className="text-xl font-black text-teal-300">أبواب المدينة: حكايا النكهات</h4>
+        <h4 className="text-xl font-black text-indigo-300">أبواب المدينة: حكايا النكهات</h4>
         <p className="text-sm text-slate-400 max-w-sm mx-auto">
           وجه الكاميرا نحو باب أثري لاستعادة ذاكرة النكهات التي عبرت من خلاله.
         </p>
@@ -161,7 +161,7 @@ export const DoorIntervention: React.FC = () => {
               {error && (
                 <button 
                   onClick={startCamera}
-                  className="px-6 py-2 bg-teal-600 text-white text-xs rounded-xl font-bold hover:bg-teal-500 transition-colors"
+                  className="px-6 py-2 bg-indigo-600 text-white text-xs rounded-xl font-bold hover:bg-indigo-500 transition-colors"
                 >
                   إعادة محاولة الوصول
                 </button>
@@ -172,12 +172,12 @@ export const DoorIntervention: React.FC = () => {
 
         {/* Viewfinder Overlay */}
         <div className="absolute inset-0 pointer-events-none border-[20px] border-slate-950/20">
-          <div className="w-full h-full border-2 border-dashed border-teal-500/30 flex items-center justify-center">
-             <div className={`w-40 h-56 border-2 border-teal-500/60 rounded-[3rem] relative transition-transform duration-700 ${phase === 'scanning' ? 'scale-110' : ''}`}>
-                <div className="absolute -top-1 -left-1 w-4 h-4 border-t-2 border-l-2 border-teal-400"></div>
-                <div className="absolute -top-1 -right-1 w-4 h-4 border-t-2 border-r-2 border-teal-400"></div>
-                <div className="absolute -bottom-1 -left-1 w-4 h-4 border-b-2 border-l-2 border-teal-400"></div>
-                <div className="absolute -bottom-1 -right-1 w-4 h-4 border-b-2 border-r-2 border-teal-400"></div>
+          <div className="w-full h-full border-2 border-dashed border-indigo-500/30 flex items-center justify-center">
+             <div className={`w-40 h-56 border-2 border-indigo-500/60 rounded-[3rem] relative transition-transform duration-700 ${phase === 'scanning' ? 'scale-110' : ''}`}>
+                <div className="absolute -top-1 -left-1 w-4 h-4 border-t-2 border-l-2 border-indigo-400"></div>
+                <div className="absolute -top-1 -right-1 w-4 h-4 border-t-2 border-r-2 border-indigo-400"></div>
+                <div className="absolute -bottom-1 -left-1 w-4 h-4 border-b-2 border-l-2 border-indigo-400"></div>
+                <div className="absolute -bottom-1 -right-1 w-4 h-4 border-b-2 border-r-2 border-indigo-400"></div>
              </div>
           </div>
         </div>
@@ -185,7 +185,7 @@ export const DoorIntervention: React.FC = () => {
         {/* Scanning Line */}
         {phase === 'scanning' && (
           <div className="absolute inset-0 z-10 pointer-events-none overflow-hidden">
-             <div className="w-full h-1 bg-teal-400 shadow-[0_0_20px_rgba(129,140,248,1)] absolute top-0 animate-scan-move"></div>
+             <div className="w-full h-1 bg-indigo-400 shadow-[0_0_20px_rgba(129,140,248,1)] absolute top-0 animate-scan-move"></div>
           </div>
         )}
 
@@ -200,13 +200,13 @@ export const DoorIntervention: React.FC = () => {
           className={`px-12 py-4 rounded-2xl font-black text-sm uppercase tracking-widest transition-all shadow-xl
             ${phase !== 'idle' 
               ? 'bg-slate-800 text-slate-500' 
-              : 'bg-teal-600 text-white hover:bg-teal-500 active:scale-95'}`}
+              : 'bg-indigo-600 text-white hover:bg-indigo-500 active:scale-95'}`}
         >
           {phase === 'analyzing' ? 'جاري التحليل...' : 'امسح الباب الآن'}
         </button>
 
         {displayedStory && phase === 'idle' && (
-          <div className="w-full max-w-lg bg-teal-950/40 backdrop-blur-xl border border-teal-500/20 p-8 rounded-[2.5rem] animate-fade-in-up">
+          <div className="w-full max-w-lg bg-indigo-950/40 backdrop-blur-xl border border-indigo-500/20 p-8 rounded-[2.5rem] animate-fade-in-up">
             <p className="font-amiri text-2xl text-slate-100 leading-relaxed italic text-center">
                "{displayedStory}"
             </p>

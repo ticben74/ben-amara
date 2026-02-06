@@ -108,10 +108,10 @@ export const InterventionVault: React.FC<Props> = ({ onExplore }) => {
   return (
     <div className="animate-fade-in space-y-12 pb-24 text-right">
       {/* Header with View Toggle */}
-      <div className="flex flex-col md:flex-row justify-between items-center gap-8 bg-teal-600/5 p-10 rounded-[4rem] border border-teal-500/10 backdrop-blur-sm">
+      <div className="flex flex-col md:flex-row justify-between items-center gap-8 bg-indigo-600/5 p-10 rounded-[4rem] border border-indigo-500/10 backdrop-blur-sm">
         <div className="space-y-3">
           <h2 className="text-5xl font-black text-white leading-tight">
-            خزينة <span className="text-teal-500">التدخلات</span>
+            خزينة <span className="text-indigo-500">التدخلات</span>
           </h2>
           <p className="text-slate-400 font-medium">إدارة وتطوير "ترسانة" القدرات الإبداعية للمنصة.</p>
         </div>
@@ -119,13 +119,13 @@ export const InterventionVault: React.FC<Props> = ({ onExplore }) => {
         <div className="flex gap-4 items-center bg-slate-900/50 p-2 rounded-[2rem] border border-slate-800">
            <button 
              onClick={() => setViewMode('visual')}
-             className={`px-8 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all ${viewMode === 'visual' ? 'bg-teal-600 text-white shadow-lg' : 'text-slate-500'}`}
+             className={`px-8 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all ${viewMode === 'visual' ? 'bg-indigo-600 text-white shadow-lg' : 'text-slate-500'}`}
            >
              الواجهة المرئية
            </button>
            <button 
              onClick={() => setViewMode('code')}
-             className={`px-8 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all ${viewMode === 'code' ? 'bg-teal-600 text-white shadow-lg' : 'text-slate-500'}`}
+             className={`px-8 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all ${viewMode === 'code' ? 'bg-indigo-600 text-white shadow-lg' : 'text-slate-500'}`}
            >
              وضع المطور (JSON)
            </button>
@@ -140,15 +140,15 @@ export const InterventionVault: React.FC<Props> = ({ onExplore }) => {
               onMouseEnter={() => setActiveModule(tool.id)}
               onMouseLeave={() => setActiveModule(null)}
               className={`group relative p-10 rounded-[3.5rem] border transition-all duration-500 overflow-hidden
-                ${activeModule === tool.id ? 'bg-teal-600/10 border-teal-500/40 shadow-3xl' : 'bg-slate-900/40 border-slate-800'}`}
+                ${activeModule === tool.id ? 'bg-indigo-600/10 border-indigo-500/40 shadow-3xl' : 'bg-slate-900/40 border-slate-800'}`}
             >
               <div className="relative z-10 flex gap-8">
                 <div className="flex-1 space-y-6">
                   <div className="flex justify-between items-start">
-                    <button onClick={() => handleEdit(tool)} className="text-[10px] font-black text-teal-400 uppercase tracking-widest hover:text-white transition-colors">تعديل</button>
+                    <button onClick={() => handleEdit(tool)} className="text-[10px] font-black text-indigo-400 uppercase tracking-widest hover:text-white transition-colors">تعديل</button>
                     <div className="text-right">
                       <h3 className="text-2xl font-black text-white">{tool.title}</h3>
-                      <p className="text-teal-400 font-bold text-[10px] uppercase tracking-widest">{tool.subtitle}</p>
+                      <p className="text-indigo-400 font-bold text-[10px] uppercase tracking-widest">{tool.subtitle}</p>
                     </div>
                   </div>
                   <p className="text-slate-400 text-sm leading-relaxed">{tool.description}</p>
@@ -159,14 +159,14 @@ export const InterventionVault: React.FC<Props> = ({ onExplore }) => {
                   </div>
                   <button 
                     onClick={() => onExplore(tool.type)}
-                    className="w-full py-4 bg-teal-600 hover:bg-teal-500 text-white rounded-2xl text-[10px] font-black uppercase tracking-widest shadow-xl"
+                    className="w-full py-4 bg-indigo-600 hover:bg-indigo-500 text-white rounded-2xl text-[10px] font-black uppercase tracking-widest shadow-xl"
                   >
                     إرساء في المكان الآن
                   </button>
                 </div>
                 <div className="shrink-0 flex flex-col items-center">
                    <div className={`w-20 h-20 rounded-[2rem] flex items-center justify-center text-4xl shadow-2xl transition-all duration-500
-                     ${activeModule === tool.id ? 'bg-teal-600 text-white' : 'bg-slate-800 text-slate-500 rotate-12'}`}>
+                     ${activeModule === tool.id ? 'bg-indigo-600 text-white' : 'bg-slate-800 text-slate-500 rotate-12'}`}>
                      {tool.icon}
                    </div>
                 </div>
@@ -175,7 +175,7 @@ export const InterventionVault: React.FC<Props> = ({ onExplore }) => {
           ))}
           <button 
             onClick={() => { setEditingModule(null); setFormData({}); setIsFormOpen(true); }}
-            className="group relative p-10 rounded-[3.5rem] border border-dashed border-slate-800 hover:border-teal-500/50 hover:bg-teal-500/5 transition-all flex flex-col items-center justify-center gap-4 text-slate-600 hover:text-teal-400"
+            className="group relative p-10 rounded-[3.5rem] border border-dashed border-slate-800 hover:border-indigo-500/50 hover:bg-indigo-500/5 transition-all flex flex-col items-center justify-center gap-4 text-slate-600 hover:text-indigo-400"
           >
             <span className="text-5xl group-hover:scale-110 transition-transform">+</span>
             <span className="font-black text-[10px] uppercase tracking-[0.3em]">إضافة وحدة جديدة للخزينة</span>
@@ -189,7 +189,7 @@ export const InterventionVault: React.FC<Props> = ({ onExplore }) => {
                 value={jsonCode}
                 onChange={(e) => setJsonCode(e.target.value)}
                 spellCheck={false}
-                className="w-full h-[600px] bg-transparent text-teal-300 font-mono text-sm outline-none resize-none custom-scrollbar leading-relaxed"
+                className="w-full h-[600px] bg-transparent text-indigo-300 font-mono text-sm outline-none resize-none custom-scrollbar leading-relaxed"
                 placeholder="// قم بلصق أو تعديل مصفوفة التدخلات هنا..."
               />
               {jsonError && (
@@ -230,23 +230,23 @@ export const InterventionVault: React.FC<Props> = ({ onExplore }) => {
               <div className="grid grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="text-[10px] font-black text-slate-500 uppercase">اسم الوحدة</label>
-                  <input type="text" required value={formData.title || ''} onChange={e => setFormData({...formData, title: e.target.value})} className="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white text-right outline-none focus:border-teal-500" />
+                  <input type="text" required value={formData.title || ''} onChange={e => setFormData({...formData, title: e.target.value})} className="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white text-right outline-none focus:border-indigo-500" />
                 </div>
                 <div className="space-y-2">
                   <label className="text-[10px] font-black text-slate-500 uppercase">العنوان الفرعي</label>
-                  <input type="text" value={formData.subtitle || ''} onChange={e => setFormData({...formData, subtitle: e.target.value})} className="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white text-right outline-none focus:border-teal-500" />
+                  <input type="text" value={formData.subtitle || ''} onChange={e => setFormData({...formData, subtitle: e.target.value})} className="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white text-right outline-none focus:border-indigo-500" />
                 </div>
               </div>
               <div className="space-y-2">
                 <label className="text-[10px] font-black text-slate-500 uppercase">القدرة التقنية</label>
-                <textarea required value={formData.capability || ''} onChange={e => setFormData({...formData, capability: e.target.value})} className="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white text-right outline-none focus:border-teal-500 h-24 resize-none" />
+                <textarea required value={formData.capability || ''} onChange={e => setFormData({...formData, capability: e.target.value})} className="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white text-right outline-none focus:border-indigo-500 h-24 resize-none" />
               </div>
               <div className="space-y-2">
                 <label className="text-[10px] font-black text-slate-500 uppercase">الأيقونة</label>
                 <input type="text" value={formData.icon || '✨'} onChange={e => setFormData({...formData, icon: e.target.value})} className="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-center text-2xl" />
               </div>
               <div className="flex gap-4 pt-10">
-                <button type="submit" className="flex-1 bg-teal-600 hover:bg-teal-500 text-white py-5 rounded-[2rem] font-black text-sm uppercase shadow-xl">حفظ</button>
+                <button type="submit" className="flex-1 bg-indigo-600 hover:bg-indigo-500 text-white py-5 rounded-[2rem] font-black text-sm uppercase shadow-xl">حفظ</button>
                 <button type="button" onClick={() => setIsFormOpen(false)} className="px-10 bg-slate-800 text-slate-400 py-5 rounded-[2rem] font-black text-sm uppercase">إلغاء</button>
               </div>
             </form>

@@ -26,8 +26,8 @@ export const TourPWAView: React.FC<Props> = ({ tour, interventions, onExit }) =>
 
   // UI Configuration with defaults
   const ui = tour.ui_config || {
-    primaryColor: '#0d9488',
-    accentColor: '#14b8a6',
+    primaryColor: '#4f46e5',
+    accentColor: '#818cf8',
     fontFamily: 'Cairo',
     viewMode: 'map',
     buttonShape: 'rounded',
@@ -120,7 +120,7 @@ export const TourPWAView: React.FC<Props> = ({ tour, interventions, onExit }) =>
         {/* Animated Badge (GIF) */}
         {ui.introGifUrl && (
           <div className="absolute top-8 right-8 w-16 h-16 z-20 pointer-events-none drop-shadow-2xl">
-             <div className="absolute -inset-2 bg-teal-500/10 blur-xl rounded-full animate-pulse"></div>
+             <div className="absolute -inset-2 bg-indigo-500/10 blur-xl rounded-full animate-pulse"></div>
              <img src={ui.introGifUrl} className="w-full h-full object-contain rounded-2xl" alt="UI Furniture GIF" />
           </div>
         )}

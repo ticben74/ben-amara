@@ -243,7 +243,7 @@ export const BenchSimulator: React.FC = () => {
                 key={key}
                 onClick={() => { setAtmosphere(key as Atmosphere); if (isSitting) playAmbient(key as Atmosphere); }}
                 className={`w-14 h-14 rounded-3xl flex flex-col items-center justify-center transition-all duration-500 relative group
-                  ${atmosphere === key ? 'bg-teal-600 text-white shadow-lg shadow-teal-500/30 scale-110 z-10' : 'text-slate-500 hover:text-slate-300'}`}
+                  ${atmosphere === key ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-500/30 scale-110 z-10' : 'text-slate-500 hover:text-slate-300'}`}
               >
                 <span className="text-2xl">{data.icon}</span>
                 <span className="text-[7px] font-black uppercase mt-1 opacity-60 group-hover:opacity-100">{data.name}</span>
@@ -252,11 +252,11 @@ export const BenchSimulator: React.FC = () => {
           </div>
           <div className="flex gap-2 justify-end flex-wrap max-w-xs">
             {NEIGHBORHOODS.map(n => (
-              <button
+              <button 
                 key={n}
                 onClick={() => setSelectedNeighborhood(n)}
                 className={`text-[9px] px-6 py-3 rounded-2xl border-2 transition-all duration-300 font-black uppercase tracking-widest
-                  ${selectedNeighborhood === n ? 'bg-teal-500 text-white border-teal-400 shadow-xl scale-105' : 'bg-slate-800/80 border-slate-700 text-slate-500 hover:border-slate-500 hover:text-slate-300'}`}
+                  ${selectedNeighborhood === n ? 'bg-indigo-500 text-white border-indigo-400 shadow-xl scale-105' : 'bg-slate-800/80 border-slate-700 text-slate-500 hover:border-slate-500 hover:text-slate-300'}`}
               >
                 {n}
               </button>
@@ -266,11 +266,11 @@ export const BenchSimulator: React.FC = () => {
 
         <div className="text-right order-1 md:order-2">
           <div className="flex items-center gap-3 justify-end mb-4">
-            <span className={`w-3 h-3 rounded-full bg-teal-500 ${isSitting ? 'animate-ping' : ''}`}></span>
-            <span className="text-[10px] font-black text-teal-400 uppercase tracking-[0.4em]">صوت ذاكرة المدينة v2.8</span>
+            <span className={`w-3 h-3 rounded-full bg-indigo-500 ${isSitting ? 'animate-ping' : ''}`}></span>
+            <span className="text-[10px] font-black text-indigo-400 uppercase tracking-[0.4em]">صوت ذاكرة المدينة v2.8</span>
           </div>
-          <h4 className="text-5xl md:text-6xl font-black text-white tracking-tight leading-none mb-4">مقعد <span className="text-teal-500 italic">الحكايا</span></h4>
-          <p className="text-slate-400 max-w-md text-sm font-medium leading-relaxed italic border-r-2 border-teal-500/30 pr-4">
+          <h4 className="text-5xl md:text-6xl font-black text-white tracking-tight leading-none mb-4">مقعد <span className="text-indigo-500 italic">الحكايا</span></h4>
+          <p className="text-slate-400 max-w-md text-sm font-medium leading-relaxed italic border-r-2 border-indigo-500/30 pr-4">
             "توقف قليلاً، اجلس، وأنصت لصدى الأقدام والهمسات التي سكنت هذا الركن عبر السنين."
           </p>
         </div>
@@ -278,11 +278,11 @@ export const BenchSimulator: React.FC = () => {
 
       {/* The Central Artifact: The Interactive Bench */}
       <div className={`relative w-full max-w-5xl aspect-[21/9] rounded-[5rem] overflow-hidden border-2 transition-all duration-1000 bg-slate-950 shadow-3xl flex items-center justify-center group
-        ${isSitting ? 'border-teal-500/40 shadow-teal-500/20' : 'border-slate-800 shadow-black'}`}>
+        ${isSitting ? 'border-indigo-500/40 shadow-indigo-500/20' : 'border-slate-800 shadow-black'}`}>
          
          {/* Atmospheric Effects Layer */}
          <div className={`absolute inset-0 bg-gradient-to-br transition-all duration-[2s] ${ATMOSPHERES[atmosphere].gradient} to-transparent opacity-40`}></div>
-         <div className={`absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(13,148,136,0.12),transparent_70%)] transition-opacity duration-1000 ${isSitting ? 'opacity-100' : 'opacity-0'}`}></div>
+         <div className={`absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(79,70,229,0.12),transparent_70%)] transition-opacity duration-1000 ${isSitting ? 'opacity-100' : 'opacity-0'}`}></div>
          
          {/* Stylized Visual Bench */}
          <div className={`relative transition-all duration-[1.5s] cubic-bezier(0.16,1,0.3,1) transform ${isSitting ? 'scale-110 -translate-y-12' : 'scale-100 translate-y-6'}`}>
@@ -291,18 +291,18 @@ export const BenchSimulator: React.FC = () => {
                   {[...Array(44)].map((_, i) => (
                     <div 
                       key={i} 
-                      className={`w-1 rounded-full transition-all duration-150 ${isSitting ? 'bg-teal-400' : 'bg-slate-800'}`}
+                      className={`w-1 rounded-full transition-all duration-150 ${isSitting ? 'bg-indigo-400' : 'bg-slate-800'}`}
                       style={{ 
                         height: isSitting ? `${12 + (volume * (0.5 + Math.sin(i * 0.25) * 1.5))}px` : '4px',
                         opacity: isSitting ? 0.9 : 0.08,
-                        boxShadow: isSitting ? '0 0 25px rgba(13, 148, 136, 0.5)' : 'none'
+                        boxShadow: isSitting ? '0 0 25px rgba(99, 102, 241, 0.5)' : 'none'
                       }}
                     ></div>
                   ))}
                </div>
                
                {isSitting && (
-                 <div className="absolute top-8 left-1/2 -translate-x-1/2 text-[8px] font-black text-teal-400/30 uppercase tracking-[0.8em] animate-pulse">
+                 <div className="absolute top-8 left-1/2 -translate-x-1/2 text-[8px] font-black text-indigo-400/30 uppercase tracking-[0.8em] animate-pulse">
                    MEMORIAL FREQUENCY TUNED
                  </div>
                )}
@@ -310,14 +310,14 @@ export const BenchSimulator: React.FC = () => {
             {/* Artistic Bench Legs */}
             <div className="absolute -bottom-14 left-28 w-5 h-16 bg-gradient-to-b from-slate-800 to-black rounded-b-3xl shadow-2xl"></div>
             <div className="absolute -bottom-14 right-28 w-5 h-16 bg-gradient-to-b from-slate-800 to-black rounded-b-3xl shadow-2xl"></div>
-            <div className="absolute -bottom-14 left-1/2 -translate-x-1/2 w-[85%] h-1 bg-teal-500/15 blur-2xl"></div>
+            <div className="absolute -bottom-14 left-1/2 -translate-x-1/2 w-[85%] h-1 bg-indigo-500/15 blur-2xl"></div>
          </div>
 
          {/* Sit/Interaction Interaction Layer */}
          {!isSitting && !loading && (
            <div className="absolute inset-0 flex flex-col items-center justify-center z-20 space-y-10 bg-slate-950/20 backdrop-blur-[1px] cursor-default">
              <div className="relative group/sit">
-                <div className={`absolute -inset-12 bg-teal-500/25 blur-[70px] rounded-full transition-opacity duration-700 ${holdProgress > 0 ? 'opacity-100 scale-125' : 'opacity-0 scale-90'}`}></div>
+                <div className={`absolute -inset-12 bg-indigo-500/25 blur-[70px] rounded-full transition-opacity duration-700 ${holdProgress > 0 ? 'opacity-100 scale-125' : 'opacity-0 scale-90'}`}></div>
                 <button 
                   onMouseDown={handleStartSitting}
                   onMouseUp={handleStopSitting}
@@ -335,7 +335,7 @@ export const BenchSimulator: React.FC = () => {
                         stroke="currentColor" 
                         strokeWidth="6" 
                         fill="transparent" 
-                        className="text-teal-500 transition-all duration-150"
+                        className="text-indigo-500 transition-all duration-150"
                         strokeDasharray="515"
                         strokeDashoffset={515 - (515 * holdProgress) / 100}
                         strokeLinecap="round"
@@ -343,7 +343,7 @@ export const BenchSimulator: React.FC = () => {
                     </svg>
                     <div className="w-36 h-36 bg-white rounded-full flex flex-col items-center justify-center shadow-4xl transform transition-all group-hover/sit:scale-105">
                        <span className="text-slate-950 text-[10px] font-black uppercase text-center leading-[1.3] tracking-widest">تثبيت<br/>للجلوس</span>
-                       <div className={`mt-3 h-1.5 bg-teal-500 rounded-full transition-all duration-300 ${holdProgress > 0 ? 'w-12' : 'w-5 animate-bounce'}`}></div>
+                       <div className={`mt-3 h-1.5 bg-indigo-500 rounded-full transition-all duration-300 ${holdProgress > 0 ? 'w-12' : 'w-5 animate-bounce'}`}></div>
                     </div>
                 </button>
              </div>
@@ -356,9 +356,9 @@ export const BenchSimulator: React.FC = () => {
 
          {isSitting && (
            <div className="absolute top-12 left-12 flex items-center gap-6 z-30">
-             <div className="flex bg-teal-950/40 backdrop-blur-2xl border border-teal-500/20 px-8 py-4 rounded-3xl items-center gap-4 shadow-2xl">
+             <div className="flex bg-indigo-950/40 backdrop-blur-2xl border border-indigo-500/20 px-8 py-4 rounded-3xl items-center gap-4 shadow-2xl">
                <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_10px_#10b981]"></div>
-               <span className="text-[10px] font-black text-teal-200 uppercase tracking-[0.2em]">اتصال بذاكرة الحي نشط</span>
+               <span className="text-[10px] font-black text-indigo-200 uppercase tracking-[0.2em]">اتصال بذاكرة الحي نشط</span>
              </div>
              <button 
                onClick={handleExit}
@@ -372,16 +372,16 @@ export const BenchSimulator: React.FC = () => {
          {loading && (
            <div className="absolute inset-0 flex flex-col items-center justify-center bg-slate-950/98 z-40 backdrop-blur-3xl space-y-12">
               <div className="relative w-40 h-40">
-                <div className="absolute inset-0 border-[6px] border-teal-500/5 rounded-full"></div>
-                <div className="absolute inset-0 border-t-[6px] border-teal-500 rounded-full animate-spin"></div>
-                <div className="absolute inset-10 border-2 border-teal-400/20 rounded-full animate-pulse"></div>
+                <div className="absolute inset-0 border-[6px] border-indigo-500/5 rounded-full"></div>
+                <div className="absolute inset-0 border-t-[6px] border-indigo-500 rounded-full animate-spin"></div>
+                <div className="absolute inset-10 border-2 border-indigo-400/20 rounded-full animate-pulse"></div>
               </div>
               <div className="text-center space-y-4">
                 <h6 className="text-4xl font-black text-white italic tracking-tighter">الحي يستجمع أنفاسه ليروي...</h6>
                 <div className="flex gap-2 justify-center">
-                  {[...Array(3)].map((_, i) => <div key={i} className="w-2 h-2 bg-teal-500 rounded-full animate-bounce shadow-lg" style={{animationDelay: `${i * 0.25}s`}}></div>)}
+                  {[...Array(3)].map((_, i) => <div key={i} className="w-2 h-2 bg-indigo-500 rounded-full animate-bounce shadow-lg" style={{animationDelay: `${i * 0.25}s`}}></div>)}
                 </div>
-                <span className="text-[10px] text-teal-400/50 font-black uppercase tracking-[0.8em] block pt-6">Gemini Narrative Engine v3.0</span>
+                <span className="text-[10px] text-indigo-400/50 font-black uppercase tracking-[0.8em] block pt-6">Gemini Narrative Engine v3.0</span>
               </div>
            </div>
          )}
@@ -390,13 +390,13 @@ export const BenchSimulator: React.FC = () => {
       {/* Main Narrative Display and Memory Journal */}
       <div className="w-full grid lg:grid-cols-12 gap-12 flex-1 min-h-[650px] items-stretch">
         {/* Storytelling Canvas */}
-        <div className="lg:col-span-8 bg-slate-900/60 p-16 md:p-24 rounded-[5rem] border border-slate-800/50 flex flex-col items-center justify-center text-center relative overflow-hidden shadow-2xl group/story transition-all hover:border-teal-500/20">
+        <div className="lg:col-span-8 bg-slate-900/60 p-16 md:p-24 rounded-[5rem] border border-slate-800/50 flex flex-col items-center justify-center text-center relative overflow-hidden shadow-2xl group/story transition-all hover:border-indigo-500/20">
            {/* Background Grid Accent */}
-           <div className="absolute inset-0 opacity-[0.04] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#0d9488 1.5px, transparent 1.5px)', backgroundSize: '50px 50px' }}></div>
+           <div className="absolute inset-0 opacity-[0.04] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#4f46e5 1.5px, transparent 1.5px)', backgroundSize: '50px 50px' }}></div>
            
            {story ? (
              <div className="relative z-10 space-y-16 animate-fade-in-up">
-                <div className="w-24 h-24 bg-teal-500/10 rounded-[2.5rem] flex items-center justify-center mx-auto text-teal-400 shadow-inner border border-teal-500/10">
+                <div className="w-24 h-24 bg-indigo-500/10 rounded-[2.5rem] flex items-center justify-center mx-auto text-indigo-400 shadow-inner border border-indigo-500/10">
                   <svg className="w-12 h-12" fill="currentColor" viewBox="0 0 24 24"><path d="M14 17h6v2h-6v-2zm-2-4h8v2h-8v-2zm-2-4h10v2h-10v-2zm-2-4h12v2h-12v-2zM2 13.069V21h7.069l8.473-8.473-7.069-7.069L2 13.069zm1.414-1.414l7.069 7.069-7.069-7.069z" /></svg>
                 </div>
                 <p className="font-amiri text-4xl md:text-5xl text-slate-100 leading-[1.9] italic font-medium px-8 transition-all group-hover/story:text-white">
@@ -404,7 +404,7 @@ export const BenchSimulator: React.FC = () => {
                 </p>
                 <div className="pt-16 flex items-center justify-center gap-8">
                   <div className="h-px w-32 bg-gradient-to-l from-transparent to-slate-800"></div>
-                  <span className="text-[12px] font-black text-teal-400 uppercase tracking-[0.3em]">راوي حي {selectedNeighborhood}</span>
+                  <span className="text-[12px] font-black text-indigo-400 uppercase tracking-[0.3em]">راوي حي {selectedNeighborhood}</span>
                   <div className="h-px w-32 bg-gradient-to-r from-transparent to-slate-800"></div>
                 </div>
              </div>
@@ -418,21 +418,21 @@ export const BenchSimulator: React.FC = () => {
                   </p>
                 </div>
                 <div className="pt-8 flex justify-center gap-3">
-                   {[...Array(5)].map((_, i) => <div key={i} className="w-2.5 h-2.5 rounded-full bg-teal-500/20 animate-pulse" style={{animationDelay: `${i * 0.4}s`}}></div>)}
+                   {[...Array(5)].map((_, i) => <div key={i} className="w-2.5 h-2.5 rounded-full bg-indigo-500/20 animate-pulse" style={{animationDelay: `${i * 0.4}s`}}></div>)}
                 </div>
              </div>
            )}
         </div>
 
         {/* Neighborhood Memory Journal */}
-        <div className="lg:col-span-4 bg-slate-900/60 p-12 rounded-[5rem] border border-slate-800/50 flex flex-col shadow-2xl relative overflow-hidden transition-all hover:border-teal-500/20">
+        <div className="lg:col-span-4 bg-slate-900/60 p-12 rounded-[5rem] border border-slate-800/50 flex flex-col shadow-2xl relative overflow-hidden transition-all hover:border-indigo-500/20">
            {/* Abstract Decorative Light */}
-           <div className="absolute -top-32 -left-32 w-96 h-96 bg-teal-500/10 blur-[150px] rounded-full pointer-events-none"></div>
+           <div className="absolute -top-32 -left-32 w-96 h-96 bg-indigo-500/10 blur-[150px] rounded-full pointer-events-none"></div>
            
            <div className="flex justify-between items-end mb-14 relative z-10">
              <div className="text-right">
                 <h5 className="text-2xl font-black text-white tracking-tight">سجل الزيارات</h5>
-                <span className="text-[10px] font-black text-teal-400 uppercase tracking-[0.2em]">{selectedNeighborhood} Living Archive</span>
+                <span className="text-[10px] font-black text-indigo-400 uppercase tracking-[0.2em]">{selectedNeighborhood} Living Archive</span>
              </div>
              <div className="bg-slate-800/80 p-5 rounded-[2rem] text-3xl shadow-2xl shadow-black/30 border border-white/5">🖋️</div>
            </div>
@@ -440,10 +440,10 @@ export const BenchSimulator: React.FC = () => {
            {/* Filtered Memory List */}
            <div className="flex-1 overflow-y-auto custom-scrollbar space-y-10 mb-14 pr-6 text-right relative z-10">
               {filteredMemories.map(m => (
-                <div key={m.id} className="bg-slate-950/40 p-10 rounded-[3rem] border border-white/5 space-y-5 hover:border-teal-500/40 transition-all group/mem shadow-xl">
+                <div key={m.id} className="bg-slate-950/40 p-10 rounded-[3rem] border border-white/5 space-y-5 hover:border-indigo-500/40 transition-all group/mem shadow-xl">
                    <div className="flex justify-between items-center">
                       <span className="text-[9px] text-slate-600 font-mono tracking-tighter uppercase">{new Date(m.created_at).toLocaleDateString('ar-EG')}</span>
-                      <div className="text-sm font-black text-teal-300 group-hover/mem:text-teal-200">{m.visitor_name}</div>
+                      <div className="text-sm font-black text-indigo-300 group-hover/mem:text-indigo-200">{m.visitor_name}</div>
                    </div>
                    <p className="text-base text-slate-200 leading-relaxed font-medium italic group-hover/mem:text-white font-amiri">"{m.text}"</p>
                 </div>
@@ -465,7 +465,7 @@ export const BenchSimulator: React.FC = () => {
                   required 
                   value={visitorName} 
                   onChange={e => setVisitorName(e.target.value)} 
-                  className="bg-slate-950/90 border border-slate-800 rounded-2xl px-8 py-5 text-sm text-white text-right outline-none focus:border-teal-600 transition-all placeholder:text-slate-700 font-bold shadow-inner" 
+                  className="bg-slate-950/90 border border-slate-800 rounded-2xl px-8 py-5 text-sm text-white text-right outline-none focus:border-indigo-600 transition-all placeholder:text-slate-700 font-bold shadow-inner" 
                 />
                 <textarea 
                   placeholder="ما الذي يهمس به هذا المكان لروحك؟" 
@@ -473,13 +473,13 @@ export const BenchSimulator: React.FC = () => {
                   value={newMemory} 
                   onChange={e => setNewMemory(e.target.value)} 
                   rows={3}
-                  className="bg-slate-950/90 border border-slate-800 rounded-2xl px-8 py-5 text-sm text-white text-right outline-none focus:border-teal-600 transition-all placeholder:text-slate-700 font-bold resize-none shadow-inner font-amiri text-lg" 
+                  className="bg-slate-950/90 border border-slate-800 rounded-2xl px-8 py-5 text-sm text-white text-right outline-none focus:border-indigo-600 transition-all placeholder:text-slate-700 font-bold resize-none shadow-inner font-amiri text-lg" 
                 />
               </div>
               <button 
                 type="submit" 
                 disabled={isSubmittingMemory || !visitorName || !newMemory}
-                className="w-full bg-teal-600 hover:bg-teal-500 disabled:bg-slate-800 text-white py-6 rounded-[2.5rem] text-[12px] font-black uppercase tracking-[0.3em] transition-all shadow-2xl shadow-teal-600/30 active:scale-95"
+                className="w-full bg-indigo-600 hover:bg-indigo-500 disabled:bg-slate-800 text-white py-6 rounded-[2.5rem] text-[12px] font-black uppercase tracking-[0.3em] transition-all shadow-2xl shadow-indigo-600/30 active:scale-95"
               >
                 {isSubmittingMemory ? 'جاري تخليد الأثر...' : 'إضافة بصمتي للمقعد'}
               </button>
