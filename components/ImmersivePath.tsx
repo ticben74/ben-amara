@@ -25,19 +25,19 @@ export const ImmersivePath: React.FC = () => {
             onClick={() => setCurrentStep(step.id)}
           >
             <div className={`z-10 w-12 h-12 rounded-full flex items-center justify-center text-xl transition-all
-              ${currentStep === step.id ? 'bg-indigo-600 ring-4 ring-indigo-500/20 scale-110' : 'bg-slate-800'}`}>
+              ${currentStep === step.id ? 'bg-teal-600 ring-4 ring-teal-500/20 scale-110' : 'bg-slate-800'}`}>
               {step.icon}
             </div>
             
             <div className="flex-1">
               <h5 className="font-bold text-lg">{step.name}</h5>
-              <p className="text-xs text-indigo-400 font-mono">{step.sound}</p>
+              <p className="text-xs text-teal-400 font-mono">{step.sound}</p>
             </div>
 
             {currentStep === step.id && (
               <div className="flex gap-1">
                 {[...Array(3)].map((_, i) => (
-                  <div key={i} className="w-1 h-3 bg-indigo-500 rounded-full animate-pulse" style={{ animationDelay: `${i * 0.2}s` }}></div>
+                  <div key={i} className="w-1 h-3 bg-teal-500 rounded-full animate-pulse" style={{ animationDelay: `${i * 0.2}s` }}></div>
                 ))}
               </div>
             )}
@@ -45,9 +45,9 @@ export const ImmersivePath: React.FC = () => {
         ))}
       </div>
 
-      <div className="mt-8 p-4 bg-indigo-600/10 rounded-xl border border-indigo-500/20">
+      <div className="mt-8 p-4 bg-teal-600/10 rounded-xl border border-teal-500/20">
         <div className="flex items-center gap-3 mb-2">
-          <div className="w-8 h-8 bg-indigo-500 rounded-lg flex items-center justify-center">
+          <div className="w-8 h-8 bg-teal-500 rounded-lg flex items-center justify-center">
             <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
               <path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" />
             </svg>

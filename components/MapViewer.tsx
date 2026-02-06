@@ -107,7 +107,7 @@ export const MapViewer: React.FC<Props> = ({ interventions, onSelectIntervention
       onMouseLeave={onMouseUp}
     >
       <div className="absolute top-8 right-10 z-20 pointer-events-none text-right">
-        <h3 className="text-3xl font-black text-white/90">الخريطة <span className="text-indigo-500">المكانية</span></h3>
+        <h3 className="text-3xl font-black text-white/90">الخريطة <span className="text-teal-500">المكانية</span></h3>
         <p className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.3em] mt-1">Spatial Visualization v3.2</p>
       </div>
 
@@ -115,7 +115,7 @@ export const MapViewer: React.FC<Props> = ({ interventions, onSelectIntervention
         className="absolute inset-0 transition-transform duration-100 pointer-events-none"
         style={{ transform: `translate(${viewOffset.x}px, ${viewOffset.y}px) scale(${zoomLevel})`, transformOrigin: '0 0' }}
       >
-        <div className="absolute inset-[-5000px] opacity-[0.03]" style={{ backgroundImage: 'linear-gradient(#4f46e5 1px, transparent 1px), linear-gradient(90deg, #4f46e5 1px, transparent 1px)', backgroundSize: '80px 80px' }}></div>
+        <div className="absolute inset-[-5000px] opacity-[0.03]" style={{ backgroundImage: 'linear-gradient(#0d9488 1px, transparent 1px), linear-gradient(90deg, #0d9488 1px, transparent 1px)', backgroundSize: '80px 80px' }}></div>
         
         <svg className="absolute inset-0 w-full h-full overflow-visible">
           {pathLines.map((line) => (
@@ -123,7 +123,7 @@ export const MapViewer: React.FC<Props> = ({ interventions, onSelectIntervention
               key={line.id + '-glow'}
               points={line.points.map(p => `${p.nx},${p.ny}`).join(' ')}
               fill="none"
-              stroke="#818cf8"
+              stroke="#14b8a6"
               strokeWidth="1.5"
               strokeLinejoin="round"
               strokeLinecap="round"
@@ -144,13 +144,13 @@ export const MapViewer: React.FC<Props> = ({ interventions, onSelectIntervention
               <div className="relative group -translate-x-1/2 -translate-y-1/2">
                 {/* Pulsing ring for selected item */}
                 {isSelected && (
-                  <div className="absolute inset-0 w-8 h-8 -translate-x-0 -translate-y-0 bg-indigo-500/40 rounded-xl animate-ping scale-[2]"></div>
+                  <div className="absolute inset-0 w-8 h-8 -translate-x-0 -translate-y-0 bg-teal-500/40 rounded-xl animate-ping scale-[2]"></div>
                 )}
                 
                 <div className={`w-8 h-8 rounded-xl flex items-center justify-center text-sm transition-all duration-500 border-2 shadow-2xl bg-slate-900 
                   ${isSelected 
-                    ? 'border-indigo-500 scale-150 shadow-[0_0_30px_rgba(99,102,241,0.6)]' 
-                    : 'border-slate-700 hover:border-indigo-500 hover:scale-125'}`}
+                    ? 'border-teal-500 scale-150 shadow-[0_0_30px_rgba(99,102,241,0.6)]' 
+                    : 'border-slate-700 hover:border-teal-500 hover:scale-125'}`}
                 >
                   {getMarkerIcon(point.type)}
                 </div>
@@ -158,7 +158,7 @@ export const MapViewer: React.FC<Props> = ({ interventions, onSelectIntervention
                 <div className={`absolute top-full left-1/2 -translate-x-1/2 mt-2 bg-slate-950/90 backdrop-blur-md border border-slate-800 px-3 py-1 rounded-full whitespace-nowrap shadow-xl transition-all
                   ${isSelected ? 'opacity-100 translate-y-2' : 'opacity-0 group-hover:opacity-100 group-hover:translate-y-0'}`}
                 >
-                  <span className={`text-[9px] font-black uppercase ${isSelected ? 'text-indigo-400' : 'text-white'}`}>
+                  <span className={`text-[9px] font-black uppercase ${isSelected ? 'text-teal-400' : 'text-white'}`}>
                     {point.location}
                   </span>
                 </div>

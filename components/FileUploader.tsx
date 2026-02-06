@@ -66,7 +66,7 @@ export const FileUploader: React.FC<FileUploaderProps> = ({
       >
         {uploading ? (
           <>
-            <div className="w-4 h-4 border-2 border-indigo-400 border-t-transparent rounded-full animate-spin"></div>
+            <div className="w-4 h-4 border-2 border-teal-400 border-t-transparent rounded-full animate-spin"></div>
             <span>جاري الرفع... {progress.toFixed(0)}%</span>
           </>
         ) : (
@@ -80,7 +80,7 @@ export const FileUploader: React.FC<FileUploaderProps> = ({
       {uploading && (
         <div className="w-full bg-slate-900 rounded-full h-1.5 overflow-hidden">
           <div
-            className="bg-indigo-600 h-full transition-all duration-300"
+            className="bg-teal-600 h-full transition-all duration-300"
             style={{ width: `${progress}%` }}
           />
         </div>

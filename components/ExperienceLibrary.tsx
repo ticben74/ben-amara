@@ -114,7 +114,7 @@ export const ExperienceLibrary: React.FC<Props> = ({ onImportComplete }) => {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="ابحث عن تجربة بالاسم أو الوسم..."
-            className="w-full bg-slate-950 border border-slate-800 rounded-2xl px-12 py-4 text-white text-sm outline-none focus:border-indigo-500 transition-all text-right"
+            className="w-full bg-slate-950 border border-slate-800 rounded-2xl px-12 py-4 text-white text-sm outline-none focus:border-teal-500 transition-all text-right"
           />
           <span className="absolute right-4 top-1/2 -translate-y-1/2 opacity-30">🔍</span>
         </div>
@@ -122,7 +122,7 @@ export const ExperienceLibrary: React.FC<Props> = ({ onImportComplete }) => {
         <select
           value={filter}
           onChange={(e) => setFilter(e.target.value)}
-          className="bg-slate-950 border border-slate-800 rounded-2xl px-8 py-4 text-white text-xs font-black uppercase appearance-none cursor-pointer hover:border-indigo-500 transition-all text-right"
+          className="bg-slate-950 border border-slate-800 rounded-2xl px-8 py-4 text-white text-xs font-black uppercase appearance-none cursor-pointer hover:border-teal-500 transition-all text-right"
         >
           <option value="all">جميع الفئات</option>
           <option value="heritage">تراث وثقافة</option>
@@ -137,7 +137,7 @@ export const ExperienceLibrary: React.FC<Props> = ({ onImportComplete }) => {
         {filteredPackages.map(pkg => (
           <div
             key={pkg.id}
-            className="bg-slate-900/60 rounded-[3.5rem] border border-slate-800 overflow-hidden group hover:border-indigo-500/50 transition-all duration-500 shadow-2xl flex flex-col"
+            className="bg-slate-900/60 rounded-[3.5rem] border border-slate-800 overflow-hidden group hover:border-teal-500/50 transition-all duration-500 shadow-2xl flex flex-col"
           >
             <div className="aspect-[16/10] bg-slate-800 relative overflow-hidden">
               <img
@@ -147,7 +147,7 @@ export const ExperienceLibrary: React.FC<Props> = ({ onImportComplete }) => {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
               {pkg.isOfficial && (
-                <div className="absolute top-6 right-6 bg-indigo-600 text-white px-4 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest shadow-xl flex items-center gap-2">
+                <div className="absolute top-6 right-6 bg-teal-600 text-white px-4 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest shadow-xl flex items-center gap-2">
                   <span>المستودع الرسمي</span>
                   <div className="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></div>
                 </div>
@@ -163,7 +163,7 @@ export const ExperienceLibrary: React.FC<Props> = ({ onImportComplete }) => {
 
             <div className="p-8 space-y-6 flex-1 flex flex-col">
               <div className="space-y-3">
-                <h3 className="text-2xl font-black text-white leading-tight group-hover:text-indigo-400 transition-colors">{pkg.name}</h3>
+                <h3 className="text-2xl font-black text-white leading-tight group-hover:text-teal-400 transition-colors">{pkg.name}</h3>
                 <p className="text-sm text-slate-400 line-clamp-3 leading-relaxed font-medium">
                   {pkg.description}
                 </p>
@@ -171,11 +171,11 @@ export const ExperienceLibrary: React.FC<Props> = ({ onImportComplete }) => {
 
               <div className="flex items-center gap-4 text-[10px] font-black uppercase text-slate-500 tracking-wider">
                 <span className="flex items-center gap-1.5">
-                   <span className="text-indigo-400 text-base">📍</span> {pkg.interventions.length} محطات
+                   <span className="text-teal-400 text-base">📍</span> {pkg.interventions.length} محطات
                 </span>
                 <span className="w-1 h-1 rounded-full bg-slate-800"></span>
                 <span className="flex items-center gap-1.5">
-                   <span className="text-indigo-400 text-base">🧭</span> {pkg.tours.length} جولات
+                   <span className="text-teal-400 text-base">🧭</span> {pkg.tours.length} جولات
                 </span>
               </div>
 
@@ -183,7 +183,7 @@ export const ExperienceLibrary: React.FC<Props> = ({ onImportComplete }) => {
                 {pkg.tags.map(tag => (
                   <span
                     key={tag}
-                    className="text-[9px] px-3 py-1.5 bg-slate-950 text-indigo-300 rounded-xl border border-indigo-500/10 font-bold"
+                    className="text-[9px] px-3 py-1.5 bg-slate-950 text-teal-300 rounded-xl border border-teal-500/10 font-bold"
                   >
                     #{tag}
                   </span>
@@ -194,7 +194,7 @@ export const ExperienceLibrary: React.FC<Props> = ({ onImportComplete }) => {
                 <button
                   onClick={() => handleClone(pkg)}
                   disabled={cloningId === pkg.id}
-                  className="w-full bg-indigo-600 hover:bg-indigo-500 disabled:bg-slate-800 text-white py-5 rounded-[2rem] font-black text-xs uppercase tracking-[0.2em] transition-all shadow-3xl shadow-indigo-600/20 active:scale-95 flex items-center justify-center gap-3"
+                  className="w-full bg-teal-600 hover:bg-teal-500 disabled:bg-slate-800 text-white py-5 rounded-[2rem] font-black text-xs uppercase tracking-[0.2em] transition-all shadow-3xl shadow-teal-600/20 active:scale-95 flex items-center justify-center gap-3"
                 >
                   {cloningId === pkg.id ? (
                     <>

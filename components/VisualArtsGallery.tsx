@@ -94,20 +94,20 @@ export const VisualArtsGallery: React.FC = () => {
     <div className="p-4 md:p-10 bg-slate-900 rounded-[3rem] border border-slate-800 h-full overflow-hidden flex flex-col min-h-[800px] relative">
       <div className="mb-10 flex flex-col md:flex-row items-center justify-between gap-6 border-b border-slate-800 pb-8 z-10">
         <div className="text-right space-y-2">
-          <h4 className="text-3xl font-black text-white">معرض <span className="text-indigo-500">الفنون البصرية</span></h4>
+          <h4 className="text-3xl font-black text-white">معرض <span className="text-teal-500">الفنون البصرية</span></h4>
           <p className="text-slate-400 font-medium italic">"رؤى فنية تعيد تشكيل وعينا المكاني"</p>
         </div>
         
         <div className="flex bg-slate-950 p-1.5 rounded-2xl border border-white/5">
           <button 
             onClick={() => setViewMode('gallery')}
-            className={`px-8 py-2.5 rounded-xl text-xs font-black transition-all ${viewMode === 'gallery' ? 'bg-indigo-600 text-white shadow-lg' : 'text-slate-500'}`}
+            className={`px-8 py-2.5 rounded-xl text-xs font-black transition-all ${viewMode === 'gallery' ? 'bg-teal-600 text-white shadow-lg' : 'text-slate-500'}`}
           >
             المعرض العام
           </button>
           <button 
             onClick={() => setViewMode('atelier')}
-            className={`px-8 py-2.5 rounded-xl text-xs font-black transition-all ${viewMode === 'atelier' ? 'bg-indigo-600 text-white shadow-lg' : 'text-slate-500'}`}
+            className={`px-8 py-2.5 rounded-xl text-xs font-black transition-all ${viewMode === 'atelier' ? 'bg-teal-600 text-white shadow-lg' : 'text-slate-500'}`}
           >
             مرسم الذكاء الاصطناعي ✨
           </button>
@@ -126,7 +126,7 @@ export const VisualArtsGallery: React.FC = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
               <div className="absolute bottom-6 left-6 right-6 text-right">
                 <h5 className="text-white font-black text-sm mb-1 line-clamp-1">{piece.title}</h5>
-                <p className="text-indigo-400 text-[10px] font-bold uppercase tracking-widest">{piece.artistName}</p>
+                <p className="text-teal-400 text-[10px] font-bold uppercase tracking-widest">{piece.artistName}</p>
               </div>
             </div>
           ))}
@@ -142,12 +142,12 @@ export const VisualArtsGallery: React.FC = () => {
                 value={prompt}
                 onChange={e => setPrompt(e.target.value)}
                 placeholder="مثلاً: غروب الشمس فوق مآذن المدينة بأسلوب الفن التجريدي المعاصر..."
-                className="w-full bg-slate-800 border-2 border-slate-700 focus:border-indigo-500 rounded-[2.5rem] p-8 text-right text-white text-lg outline-none transition-all h-32 resize-none shadow-inner"
+                className="w-full bg-slate-800 border-2 border-slate-700 focus:border-teal-500 rounded-[2.5rem] p-8 text-right text-white text-lg outline-none transition-all h-32 resize-none shadow-inner"
               />
               <button 
                 onClick={handleGenerateArt}
                 disabled={isGenerating || !prompt.trim()}
-                className="absolute left-4 bottom-4 bg-indigo-600 hover:bg-indigo-500 disabled:bg-slate-700 text-white px-8 py-3 rounded-2xl text-xs font-black uppercase tracking-widest shadow-xl transition-all"
+                className="absolute left-4 bottom-4 bg-teal-600 hover:bg-teal-500 disabled:bg-slate-700 text-white px-8 py-3 rounded-2xl text-xs font-black uppercase tracking-widest shadow-xl transition-all"
               >
                 {isGenerating ? 'جاري الرسم...' : 'ابدأ الرسم'}
               </button>
@@ -156,18 +156,18 @@ export const VisualArtsGallery: React.FC = () => {
 
           {isGenerating && (
             <div className="flex flex-col items-center gap-6 animate-pulse">
-               <div className="w-64 h-64 bg-slate-800 rounded-[3rem] border-2 border-dashed border-indigo-500/30 flex items-center justify-center">
-                  <div className="w-12 h-12 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
+               <div className="w-64 h-64 bg-slate-800 rounded-[3rem] border-2 border-dashed border-teal-500/30 flex items-center justify-center">
+                  <div className="w-12 h-12 border-4 border-teal-500 border-t-transparent rounded-full animate-spin"></div>
                </div>
-               <span className="text-indigo-400 font-bold">الذكاء الاصطناعي يمزج الألوان...</span>
+               <span className="text-teal-400 font-bold">الذكاء الاصطناعي يمزج الألوان...</span>
             </div>
           )}
 
           {generatedImageBase64 && !isGenerating && (
             <div className="flex flex-col items-center gap-8 animate-fade-in-up">
                <div className="relative group">
-                  <div className="absolute -inset-4 bg-indigo-500/20 blur-2xl rounded-full animate-pulse"></div>
-                  <img src={generatedImageBase64} className="relative w-80 h-80 object-cover rounded-[3rem] border-4 border-indigo-600 shadow-3xl" />
+                  <div className="absolute -inset-4 bg-teal-500/20 blur-2xl rounded-full animate-pulse"></div>
+                  <img src={generatedImageBase64} className="relative w-80 h-80 object-cover rounded-[3rem] border-4 border-teal-600 shadow-3xl" />
                </div>
                <div className="flex gap-4">
                   <button 
@@ -197,16 +197,16 @@ export const VisualArtsGallery: React.FC = () => {
               <div className="space-y-12">
                 <div className="space-y-4">
                   <h2 className="text-4xl font-black text-white">{selectedPiece.title}</h2>
-                  <p className="text-xl text-indigo-400 font-bold">{selectedPiece.artistName}</p>
+                  <p className="text-xl text-teal-400 font-bold">{selectedPiece.artistName}</p>
                 </div>
                 <div className="space-y-6">
                   <h6 className="text-[10px] font-black text-slate-500 uppercase tracking-[0.4em] border-b border-slate-800 pb-2">كلمة الفنان</h6>
-                  <p className="font-amiri text-2xl text-slate-200 leading-relaxed italic pr-4 border-r-2 border-indigo-500/30 italic">
+                  <p className="font-amiri text-2xl text-slate-200 leading-relaxed italic pr-4 border-r-2 border-teal-500/30 italic">
                     "{selectedPiece.artistWord}"
                   </p>
                 </div>
               </div>
-              <button onClick={() => setSelectedPiece(null)} className="mt-12 w-full bg-indigo-600 text-white font-black py-5 rounded-[2.5rem] shadow-2xl">العودة للمعرض</button>
+              <button onClick={() => setSelectedPiece(null)} className="mt-12 w-full bg-teal-600 text-white font-black py-5 rounded-[2.5rem] shadow-2xl">العودة للمعرض</button>
             </div>
           </div>
         </div>

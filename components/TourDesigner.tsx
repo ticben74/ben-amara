@@ -11,8 +11,8 @@ interface Props {
 
 export const TourDesigner: React.FC<Props> = ({ tour, onSave, onCancel }) => {
   const [config, setConfig] = useState<TourUIConfig>(tour.ui_config || {
-    primaryColor: '#4f46e5',
-    accentColor: '#818cf8',
+    primaryColor: '#0d9488',
+    accentColor: '#14b8a6',
     fontFamily: 'Cairo',
     viewMode: 'map',
     buttonShape: 'rounded',
@@ -29,11 +29,11 @@ export const TourDesigner: React.FC<Props> = ({ tour, onSave, onCancel }) => {
       {/* Top Bar */}
       <div className="p-6 md:p-8 border-b border-slate-800 bg-slate-900/50 backdrop-blur-xl flex justify-between items-center z-50">
          <div className="flex gap-4">
-           <button onClick={handleSave} className="bg-indigo-600 hover:bg-indigo-500 text-white px-10 py-3.5 rounded-2xl font-black text-xs uppercase tracking-widest shadow-2xl shadow-indigo-600/20 transition-all active:scale-95">اعتماد التصميم</button>
+           <button onClick={handleSave} className="bg-teal-600 hover:bg-teal-500 text-white px-10 py-3.5 rounded-2xl font-black text-xs uppercase tracking-widest shadow-2xl shadow-teal-600/20 transition-all active:scale-95">اعتماد التصميم</button>
            <button onClick={onCancel} className="text-slate-500 hover:text-white px-6 font-bold text-xs uppercase">إلغاء</button>
          </div>
          <div className="text-right">
-            <h3 className="text-2xl font-black text-white">استوديو <span className="text-indigo-400">تأثيث الواجهة</span></h3>
+            <h3 className="text-2xl font-black text-white">استوديو <span className="text-teal-400">تأثيث الواجهة</span></h3>
             <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest mt-1">Live Mobile UI Design Studio</p>
          </div>
       </div>
@@ -44,7 +44,7 @@ export const TourDesigner: React.FC<Props> = ({ tour, onSave, onCancel }) => {
            
            {/* Section 1: Assets */}
            <div className="space-y-6">
-              <label className="text-[10px] font-black text-indigo-400 uppercase tracking-[0.3em] block border-b border-slate-800 pb-3">1. تأثيث الأصول البصرية (GIFs)</label>
+              <label className="text-[10px] font-black text-teal-400 uppercase tracking-[0.3em] block border-b border-slate-800 pb-3">1. تأثيث الأصول البصرية (GIFs)</label>
               
               <div className="space-y-4">
                 <span className="text-[11px] font-bold text-slate-300">أيقونة الجولة المتحركة (GIF URL)</span>
@@ -54,7 +54,7 @@ export const TourDesigner: React.FC<Props> = ({ tour, onSave, onCancel }) => {
                     placeholder="رابط GIF مباشر (أو ارفعه بالأسفل)..." 
                     value={config.introGifUrl || ''} 
                     onChange={e => setConfig({...config, introGifUrl: e.target.value})}
-                    className="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white text-[10px] outline-none focus:border-indigo-500 transition-all"
+                    className="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white text-[10px] outline-none focus:border-teal-500 transition-all"
                   />
                   <FileUploader 
                     mediaType="image" 
@@ -77,7 +77,7 @@ export const TourDesigner: React.FC<Props> = ({ tour, onSave, onCancel }) => {
 
            {/* Section 2: UI Geometry */}
            <div className="space-y-6">
-              <label className="text-[10px] font-black text-indigo-400 uppercase tracking-[0.3em] block border-b border-slate-800 pb-3">2. هندسة المكونات (Geometry)</label>
+              <label className="text-[10px] font-black text-teal-400 uppercase tracking-[0.3em] block border-b border-slate-800 pb-3">2. هندسة المكونات (Geometry)</label>
               
               <div className="space-y-4">
                  <span className="text-[11px] font-bold text-slate-300 block">شكل الأزرار والعناصر التفاعلية</span>
@@ -90,7 +90,7 @@ export const TourDesigner: React.FC<Props> = ({ tour, onSave, onCancel }) => {
                       <button 
                         key={shape.id} 
                         onClick={() => setConfig({...config, buttonShape: shape.id as any})}
-                        className={`py-3 text-[10px] font-black uppercase rounded-xl border transition-all ${config.buttonShape === shape.id ? 'bg-indigo-600 border-indigo-500 text-white' : 'bg-slate-800 border-slate-700 text-slate-500 hover:border-slate-500'}`}
+                        className={`py-3 text-[10px] font-black uppercase rounded-xl border transition-all ${config.buttonShape === shape.id ? 'bg-teal-600 border-teal-500 text-white' : 'bg-slate-800 border-slate-700 text-slate-500 hover:border-slate-500'}`}
                       >
                         {shape.label}
                       </button>
@@ -98,14 +98,14 @@ export const TourDesigner: React.FC<Props> = ({ tour, onSave, onCancel }) => {
                  </div>
               </div>
 
-              <div className="p-5 bg-slate-800/40 rounded-3xl border border-slate-700 flex items-center justify-between group transition-all hover:border-indigo-500/30">
+              <div className="p-5 bg-slate-800/40 rounded-3xl border border-slate-700 flex items-center justify-between group transition-all hover:border-teal-500/30">
                  <div className="text-right">
                     <span className="text-[11px] font-bold text-white block">تأثير الزجاج (Glassmorphism)</span>
                     <span className="text-[8px] text-slate-500 uppercase font-black">Transparency & Blur</span>
                  </div>
                  <button 
                     onClick={() => setConfig({...config, glassEffect: !config.glassEffect})}
-                    className={`w-14 h-7 rounded-full transition-all relative ${config.glassEffect ? 'bg-indigo-600' : 'bg-slate-700'}`}
+                    className={`w-14 h-7 rounded-full transition-all relative ${config.glassEffect ? 'bg-teal-600' : 'bg-slate-700'}`}
                  >
                     <div className={`absolute top-1 w-5 h-5 bg-white rounded-full transition-all ${config.glassEffect ? 'right-8' : 'right-1'}`}></div>
                  </button>
@@ -114,9 +114,9 @@ export const TourDesigner: React.FC<Props> = ({ tour, onSave, onCancel }) => {
 
            {/* Section 3: Identity & Colors */}
            <div className="space-y-6">
-              <label className="text-[10px] font-black text-indigo-400 uppercase tracking-[0.3em] block border-b border-slate-800 pb-3">3. ألوان الهوية والخطوط</label>
+              <label className="text-[10px] font-black text-teal-400 uppercase tracking-[0.3em] block border-b border-slate-800 pb-3">3. ألوان الهوية والخطوط</label>
               <div className="flex gap-2 flex-wrap justify-end">
-                 {['#4f46e5', '#f43f5e', '#10b981', '#f59e0b', '#0ea5e9', '#d946ef', '#ffffff'].map(color => (
+                 {['#0d9488', '#f43f5e', '#10b981', '#f59e0b', '#0ea5e9', '#d946ef', '#ffffff'].map(color => (
                    <button 
                      key={color} 
                      onClick={() => setConfig({...config, primaryColor: color})}
@@ -132,19 +132,19 @@ export const TourDesigner: React.FC<Props> = ({ tour, onSave, onCancel }) => {
            </div>
 
            <div className="space-y-4">
-              <label className="text-[10px] font-black text-indigo-400 uppercase tracking-[0.3em] block border-b border-slate-800 pb-3">4. رسائل الواجهة</label>
+              <label className="text-[10px] font-black text-teal-400 uppercase tracking-[0.3em] block border-b border-slate-800 pb-3">4. رسائل الواجهة</label>
               <textarea 
                 value={config.welcomeMessage}
                 onChange={e => setConfig({...config, welcomeMessage: e.target.value})}
                 placeholder="اكتب رسالة ترحيبية تظهر في بداية المسار..."
-                className="w-full bg-slate-800 border border-slate-700 rounded-2xl p-6 text-white text-xs text-right outline-none focus:border-indigo-500 h-32 resize-none shadow-inner"
+                className="w-full bg-slate-800 border border-slate-700 rounded-2xl p-6 text-white text-xs text-right outline-none focus:border-teal-500 h-32 resize-none shadow-inner"
               />
            </div>
         </div>
 
         {/* Live Preview Emulator */}
         <div className="flex-1 bg-[#050810] p-10 flex items-center justify-center relative overflow-hidden">
-           <div className="absolute inset-0 opacity-[0.05] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#4f46e5 1px, transparent 1px)', backgroundSize: '30px 30px' }}></div>
+           <div className="absolute inset-0 opacity-[0.05] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#0d9488 1px, transparent 1px)', backgroundSize: '30px 30px' }}></div>
            
            <div className="w-[360px] h-[720px] bg-slate-950 rounded-[4rem] border-[12px] border-slate-800 shadow-[0_0_120px_rgba(0,0,0,0.8)] overflow-hidden relative flex flex-col animate-scale-up">
               
@@ -173,7 +173,7 @@ export const TourDesigner: React.FC<Props> = ({ tour, onSave, onCancel }) => {
                  {/* Intro GIF Preview */}
                  {config.introGifUrl ? (
                    <div className="relative mb-10 group">
-                      <div className="absolute -inset-6 bg-indigo-500/10 blur-3xl rounded-full animate-pulse"></div>
+                      <div className="absolute -inset-6 bg-teal-500/10 blur-3xl rounded-full animate-pulse"></div>
                       <img src={config.introGifUrl} className="relative w-48 h-48 object-contain rounded-3xl shadow-3xl" alt="Tour Asset GIF" />
                    </div>
                  ) : (

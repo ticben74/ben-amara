@@ -26,7 +26,7 @@ const INITIAL_DATA: InterventionItem[] = [
 
 const INITIAL_TOURS: CuratedTour[] = [
   { id: 't1', name: 'مسار ذاكرة القاهرة القديمة', city: 'القاهرة', description: 'جولة سردية تربط المقاعد التاريخية بالأبواب العتيقة.', stops: ['1', '4'], theme: 'heritage', isOfficial: true, ui_config: { primaryColor: '#c2410c', accentColor: '#f59e0b', fontFamily: 'Amiri', viewMode: 'map', buttonShape: 'rounded', glassEffect: true, cardStyle: 'elevated', welcomeMessage: 'أهلاً بك في ذاكرة الألف عام.' } },
-  { id: 't2', name: 'نبض الرياض الرقمي', city: 'الرياض', description: 'تجربة بصرية تفاعلية تستشرف مستقبل الفن الحضري.', stops: ['2', '5'], theme: 'art', isOfficial: true, ui_config: { primaryColor: '#4f46e5', accentColor: '#818cf8', fontFamily: 'Cairo', viewMode: 'map', buttonShape: 'pill', glassEffect: true, cardStyle: 'minimal', welcomeMessage: 'استكشف التداخل بين الفن والتقنية.' } }
+  { id: 't2', name: 'نبض الرياض الرقمي', city: 'الرياض', description: 'تجربة بصرية تفاعلية تستشرف مستقبل الفن الحضري.', stops: ['2', '5'], theme: 'art', isOfficial: true, ui_config: { primaryColor: '#0d9488', accentColor: '#14b8a6', fontFamily: 'Cairo', viewMode: 'map', buttonShape: 'pill', glassEffect: true, cardStyle: 'minimal', welcomeMessage: 'استكشف التداخل بين الفن والتقنية.' } }
 ];
 
 type ViewType = 'platform' | 'vault' | 'management' | 'pwa-tour' | 'landing-page' | 'generator';
@@ -135,18 +135,18 @@ const App: React.FC = () => {
       <nav className="relative z-50 border-b border-slate-800 bg-slate-900/80 backdrop-blur-xl sticky top-0 shadow-2xl">
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <div className="w-12 h-12 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-[1.2rem] flex items-center justify-center font-black text-white shadow-xl shadow-indigo-500/20 text-xl">ت</div>
+            <div className="w-12 h-12 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-[1.2rem] flex items-center justify-center font-black text-white shadow-xl shadow-teal-500/20 text-xl">ت</div>
             <div className="text-right hidden sm:block">
               <span className="font-black text-xl block tracking-tight">التدخلات الإبداعية</span>
-              <span className="text-[10px] text-indigo-400 font-bold uppercase tracking-widest">Urban Humanity 4.2</span>
+              <span className="text-[10px] text-teal-400 font-bold uppercase tracking-widest">Urban Humanity 4.2</span>
             </div>
           </div>
           
           <div className="flex bg-slate-800/50 rounded-2xl p-1.5 border border-slate-700/50 shadow-inner">
-            <button onClick={() => { setCurrentView('platform'); setPendingAnchorType(null); }} className={`px-8 py-3 rounded-xl text-xs font-black transition-all ${currentView === 'platform' ? 'bg-indigo-600 text-white shadow-lg' : 'text-slate-400 hover:text-slate-200'}`}>المنصة</button>
-            <button onClick={() => { setCurrentView('vault'); setPendingAnchorType(null); }} className={`px-8 py-3 rounded-xl text-xs font-black transition-all ${currentView === 'vault' ? 'bg-indigo-600 text-white shadow-lg' : 'text-slate-400 hover:text-slate-200'}`}>خزينة التدخلات</button>
-            <button onClick={() => { setCurrentView('generator'); }} className={`px-8 py-3 rounded-xl text-xs font-black transition-all ${currentView === 'generator' ? 'bg-purple-600 text-white shadow-lg' : 'text-slate-400 hover:text-slate-200'}`}>✨ مولّد التجارب</button>
-            <button onClick={() => { setCurrentView('management'); }} className={`px-8 py-3 rounded-xl text-xs font-black transition-all ${currentView === 'management' ? 'bg-indigo-600 text-white shadow-lg' : 'text-slate-400 hover:text-slate-200'}`}>الإدارة</button>
+            <button onClick={() => { setCurrentView('platform'); setPendingAnchorType(null); }} className={`px-8 py-3 rounded-xl text-xs font-black transition-all ${currentView === 'platform' ? 'bg-teal-600 text-white shadow-lg' : 'text-slate-400 hover:text-slate-200'}`}>المنصة</button>
+            <button onClick={() => { setCurrentView('vault'); setPendingAnchorType(null); }} className={`px-8 py-3 rounded-xl text-xs font-black transition-all ${currentView === 'vault' ? 'bg-teal-600 text-white shadow-lg' : 'text-slate-400 hover:text-slate-200'}`}>خزينة التدخلات</button>
+            <button onClick={() => { setCurrentView('generator'); }} className={`px-8 py-3 rounded-xl text-xs font-black transition-all ${currentView === 'generator' ? 'bg-teal-600 text-white shadow-lg' : 'text-slate-400 hover:text-slate-200'}`}>✨ مولّد التجارب</button>
+            <button onClick={() => { setCurrentView('management'); }} className={`px-8 py-3 rounded-xl text-xs font-black transition-all ${currentView === 'management' ? 'bg-teal-600 text-white shadow-lg' : 'text-slate-400 hover:text-slate-200'}`}>الإدارة</button>
           </div>
         </div>
       </nav>
@@ -156,12 +156,12 @@ const App: React.FC = () => {
           <>
             <div className="flex flex-col md:flex-row items-center justify-between gap-10 mb-20 text-right">
               <div className="space-y-3 order-2 md:order-1">
-                <h1 className="text-5xl md:text-7xl font-black text-white leading-tight">صدى <span className="text-indigo-500 italic">المدينة</span> المتجدد</h1>
-                <p className="text-slate-400 font-medium text-xl border-r-4 border-indigo-500/40 pr-6">استكشف كافة التدخلات الإبداعية أو اتبع المسارات السردية المنسقة.</p>
+                <h1 className="text-5xl md:text-7xl font-black text-white leading-tight">صدى <span className="text-teal-500 italic">المدينة</span> المتجدد</h1>
+                <p className="text-slate-400 font-medium text-xl border-r-4 border-teal-500/40 pr-6">استكشف كافة التدخلات الإبداعية أو اتبع المسارات السردية المنسقة.</p>
               </div>
               <div className="bg-slate-800/40 p-2 rounded-2xl border border-slate-700/50 inline-flex order-1 md:order-2 shadow-2xl backdrop-blur-md">
-                <button onClick={() => setShowcaseMode('grid')} className={`px-10 py-3 rounded-xl text-xs font-black transition-all ${showcaseMode === 'grid' ? 'bg-indigo-600 text-white' : 'text-slate-500'}`}>عرض المحاكي</button>
-                <button onClick={() => setShowcaseMode('map')} className={`px-10 py-3 rounded-xl text-xs font-black transition-all ${showcaseMode === 'map' ? 'bg-indigo-600 text-white' : 'text-slate-500'}`}>عرض الخريطة</button>
+                <button onClick={() => setShowcaseMode('grid')} className={`px-10 py-3 rounded-xl text-xs font-black transition-all ${showcaseMode === 'grid' ? 'bg-teal-600 text-white' : 'text-slate-500'}`}>عرض المحاكي</button>
+                <button onClick={() => setShowcaseMode('map')} className={`px-10 py-3 rounded-xl text-xs font-black transition-all ${showcaseMode === 'map' ? 'bg-teal-600 text-white' : 'text-slate-500'}`}>عرض الخريطة</button>
               </div>
             </div>
 
@@ -170,8 +170,8 @@ const App: React.FC = () => {
                 <aside className="lg:col-span-4 space-y-6 max-h-[850px] overflow-y-auto pr-3 custom-scrollbar sticky top-36">
                   <div className="bg-slate-900/60 p-8 rounded-[3rem] border border-slate-800/60 shadow-3xl backdrop-blur-xl">
                     <div className="flex bg-slate-950/50 p-1.5 rounded-2xl border border-slate-800 mb-8">
-                      <button onClick={() => setSidebarMode('interventions')} className={`flex-1 py-3 rounded-xl text-[10px] font-black uppercase transition-all ${sidebarMode === 'interventions' ? 'bg-indigo-600 text-white shadow-lg' : 'text-slate-500'}`}>تدخلات فردية</button>
-                      <button onClick={() => setSidebarMode('suggested_tours')} className={`flex-1 py-3 rounded-xl text-[10px] font-black uppercase transition-all ${sidebarMode === 'suggested_tours' ? 'bg-indigo-600 text-white shadow-lg' : 'text-slate-500'}`}>جولات منسقة</button>
+                      <button onClick={() => setSidebarMode('interventions')} className={`flex-1 py-3 rounded-xl text-[10px] font-black uppercase transition-all ${sidebarMode === 'interventions' ? 'bg-teal-600 text-white shadow-lg' : 'text-slate-500'}`}>تدخلات فردية</button>
+                      <button onClick={() => setSidebarMode('suggested_tours')} className={`flex-1 py-3 rounded-xl text-[10px] font-black uppercase transition-all ${sidebarMode === 'suggested_tours' ? 'bg-teal-600 text-white shadow-lg' : 'text-slate-500'}`}>جولات منسقة</button>
                     </div>
 
                     <div className="space-y-5">
@@ -181,14 +181,14 @@ const App: React.FC = () => {
                         ))
                       ) : (
                         curatedTours.map((tour) => (
-                          <button key={tour.id} onClick={() => handleSelectTour(tour)} className={`w-full p-8 rounded-[2.5rem] border text-right transition-all group relative overflow-hidden ${activeTour?.id === tour.id ? 'bg-indigo-600/20 border-indigo-500 shadow-2xl' : 'bg-slate-800/40 border-slate-800 hover:border-slate-600'}`}>
+                          <button key={tour.id} onClick={() => handleSelectTour(tour)} className={`w-full p-8 rounded-[2.5rem] border text-right transition-all group relative overflow-hidden ${activeTour?.id === tour.id ? 'bg-teal-600/20 border-teal-500 shadow-2xl' : 'bg-slate-800/40 border-slate-800 hover:border-slate-600'}`}>
                             <div className="flex justify-between items-start mb-3 relative z-10">
-                               <span className="text-[10px] font-black bg-indigo-500/20 text-indigo-400 px-3 py-1 rounded-full">{tour.theme}</span>
+                               <span className="text-[10px] font-black bg-teal-500/20 text-teal-400 px-3 py-1 rounded-full">{tour.theme}</span>
                                <span className="text-[10px] font-black text-slate-500">{tour.stops.length} محطات</span>
                             </div>
-                            <h4 className="font-black text-xl text-white group-hover:text-indigo-300 transition-colors relative z-10">{tour.name}</h4>
+                            <h4 className="font-black text-xl text-white group-hover:text-teal-300 transition-colors relative z-10">{tour.name}</h4>
                             <p className="text-xs text-slate-500 line-clamp-2 mt-2 leading-relaxed relative z-10">{tour.city} - {tour.description}</p>
-                            {activeTour?.id === tour.id && <div className="absolute top-0 right-0 w-1.5 h-full bg-indigo-500"></div>}
+                            {activeTour?.id === tour.id && <div className="absolute top-0 right-0 w-1.5 h-full bg-teal-500"></div>}
                           </button>
                         ))
                       )}
@@ -201,13 +201,13 @@ const App: React.FC = () => {
                       {renderSimulator()}
                       
                       {/* زر المشاركة والـ QR العائم */}
-                      <button 
+                      <button
                         onClick={() => setIsShareModalOpen(true)}
                         className="absolute bottom-12 right-12 w-20 h-20 bg-white text-slate-900 rounded-full shadow-[0_20px_60px_rgba(0,0,0,0.4)] flex items-center justify-center text-3xl hover:scale-110 active:scale-95 transition-all z-30 group"
                         title="عرض رمز الاستجابة السريعة ورابط المشاركة"
                       >
                         <span className="group-hover:rotate-12 transition-transform">📱</span>
-                        <div className="absolute -top-14 right-0 bg-indigo-600 text-white text-[10px] font-black px-4 py-2 rounded-xl opacity-0 group-hover:opacity-100 transition-all whitespace-nowrap shadow-xl">
+                        <div className="absolute -top-14 right-0 bg-teal-600 text-white text-[10px] font-black px-4 py-2 rounded-xl opacity-0 group-hover:opacity-100 transition-all whitespace-nowrap shadow-xl">
                           رمز الاستجابة والرابط
                         </div>
                       </button>
