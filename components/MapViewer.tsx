@@ -5,6 +5,7 @@ import { InterventionType, InterventionItem } from '../types';
 interface Props {
   interventions: InterventionItem[];
   onSelectIntervention: (item: InterventionItem) => void;
+  selectedId?: string;
 }
 
 interface PointWithPos {
@@ -17,8 +18,7 @@ interface PointWithPos {
   isPathPoint?: boolean;
 }
 
-export const MapViewer: React.FC<Props> = ({ interventions, onSelectIntervention }) => {
-  const [selectedPoint, setSelectedPoint] = useState<InterventionItem | null>(null);
+export const MapViewer: React.FC<Props> = ({ interventions, onSelectIntervention, selectedId }) => {
   const [zoomLevel, setZoomLevel] = useState(1.5);
   const [viewOffset, setViewOffset] = useState({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
@@ -132,29 +132,45 @@ export const MapViewer: React.FC<Props> = ({ interventions, onSelectIntervention
           ))}
         </svg>
 
-        {normalizedItems.map((point) => (
-          <div 
-            key={point.id}
-            className="absolute pointer-events-auto"
-            style={{ left: `${point.nx}px`, top: `${point.ny}px` }}
-            onClick={(e) => { e.stopPropagation(); onSelectIntervention(point.item); }}
-          >
-            <div className="relative group -translate-x-1/2 -translate-y-1/2">
-              <div className={`w-8 h-8 rounded-xl flex items-center justify-center text-sm transition-all duration-500 border-2 shadow-2xl bg-slate-900 border-slate-700 hover:border-indigo-500 hover:scale-125`}
-              >
-                {getMarkerIcon(point.type)}
-              </div>
-              <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 bg-slate-950/90 backdrop-blur-md border border-slate-800 px-3 py-1 rounded-full whitespace-nowrap shadow-xl opacity-0 group-hover:opacity-100 transition-all">
-                <span className="text-[9px] font-black text-white uppercase">{point.location}</span>
+        {normalizedItems.map((point) => {
+          const isSelected = selectedId === point.item.id;
+          return (
+            <div 
+              key={point.id}
+              className={`absolute pointer-events-auto transition-all duration-300 ${isSelected ? 'z-50' : 'z-10'}`}
+              style={{ left: `${point.nx}px`, top: `${point.ny}px` }}
+              onClick={(e) => { e.stopPropagation(); onSelectIntervention(point.item); }}
+            >
+              <div className="relative group -translate-x-1/2 -translate-y-1/2">
+                {/* Pulsing ring for selected item */}
+                {isSelected && (
+                  <div className="absolute inset-0 w-8 h-8 -translate-x-0 -translate-y-0 bg-indigo-500/40 rounded-xl animate-ping scale-[2]"></div>
+                )}
+                
+                <div className={`w-8 h-8 rounded-xl flex items-center justify-center text-sm transition-all duration-500 border-2 shadow-2xl bg-slate-900 
+                  ${isSelected 
+                    ? 'border-indigo-500 scale-150 shadow-[0_0_30px_rgba(99,102,241,0.6)]' 
+                    : 'border-slate-700 hover:border-indigo-500 hover:scale-125'}`}
+                >
+                  {getMarkerIcon(point.type)}
+                </div>
+                
+                <div className={`absolute top-full left-1/2 -translate-x-1/2 mt-2 bg-slate-950/90 backdrop-blur-md border border-slate-800 px-3 py-1 rounded-full whitespace-nowrap shadow-xl transition-all
+                  ${isSelected ? 'opacity-100 translate-y-2' : 'opacity-0 group-hover:opacity-100 group-hover:translate-y-0'}`}
+                >
+                  <span className={`text-[9px] font-black uppercase ${isSelected ? 'text-indigo-400' : 'text-white'}`}>
+                    {point.location}
+                  </span>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
       <div className="absolute bottom-10 left-10 z-40 flex flex-col gap-3">
-        <button onClick={() => setZoomLevel(prev => Math.min(prev + 0.5, 8))} className="w-12 h-12 bg-slate-900 text-white rounded-2xl border border-slate-800 shadow-2xl font-bold">+</button>
-        <button onClick={() => setZoomLevel(prev => Math.max(prev - 0.5, 0.5))} className="w-12 h-12 bg-slate-900 text-white rounded-2xl border border-slate-800 shadow-2xl font-bold">-</button>
+        <button onClick={() => setZoomLevel(prev => Math.min(prev + 0.5, 8))} className="w-12 h-12 bg-slate-900 text-white rounded-2xl border border-slate-800 shadow-2xl font-bold hover:bg-slate-800 transition-colors">+</button>
+        <button onClick={() => setZoomLevel(prev => Math.max(prev - 0.5, 0.5))} className="w-12 h-12 bg-slate-900 text-white rounded-2xl border border-slate-800 shadow-2xl font-bold hover:bg-slate-800 transition-colors">-</button>
       </div>
     </div>
   );

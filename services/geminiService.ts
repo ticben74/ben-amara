@@ -1,6 +1,7 @@
 
 import { GoogleGenAI, Modality, Type } from "@google/genai";
 import { trackPerformance, logError } from "./monitoringService";
+import { StopInteraction } from "../types";
 
 const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
@@ -12,6 +13,68 @@ const getCache = (key: string) => {
 
 const setCache = (key: string, value: any) => {
   localStorage.setItem(`gemini_cache_${key}`, JSON.stringify(value));
+};
+
+/**
+ * وظيفة جديدة: صقل ملاحظات الفنان البشري وتحويلها لسرد احترافي
+ */
+export const refineArtistNarrative = async (notes: string, location: string): Promise<string> => {
+  try {
+    const response = await ai.models.generateContent({
+      model: 'gemini-3-flash-preview',
+      contents: `أنت مساعد "منسق ثقافي". أمامك ملاحظات فنية خام من فنان بشري عن موقع "${location}". 
+      قم بإعادة صياغة هذه الملاحظات: "${notes}" إلى نص سردي شاعري، دافئ، ومركز (حوالي 50 كلمة) يصلح ليكون حكاية صوتية أو نصاً تعريفياً بجانب العمل الفني. 
+      حافظ على روح الفنان الأصلية ولكن امنحها صقلاً أدبياً.`,
+    });
+    return response.text || notes;
+  } catch (error) {
+    logError(error as Error, { context: 'refineArtistNarrative' });
+    return notes;
+  }
+};
+
+export const generateStopInteraction = async (location: string, type: string): Promise<StopInteraction> => {
+  const cacheKey = `interaction_${location}`;
+  const cached = getCache(cacheKey);
+  if (cached) return cached;
+
+  try {
+    const response = await ai.models.generateContent({
+      model: 'gemini-3-flash-preview',
+      contents: `أنت مرشد سياحي ذكي. قم بإنشاء سؤال تحدي (Quizz) واحد عن محطة "${location}" وهي عبارة عن "${type}". 
+      السؤال يجب أن يكون مشوقاً ويحث الزائر على تأمل المكان.
+      أريد الإجابة بصيغة JSON حصراً تتضمن:
+      - question: نص السؤال
+      - options: مصفوفة من 3 خيارات
+      - correctAnswer: الخيار الصحيح
+      - fact: حقيقة تاريخية أو فنية قصيرة مرتبطة بالإجابة.`,
+      config: {
+        responseMimeType: "application/json",
+        responseSchema: {
+          type: Type.OBJECT,
+          properties: {
+            question: { type: Type.STRING },
+            options: { type: Type.ARRAY, items: { type: Type.STRING } },
+            correctAnswer: { type: Type.STRING },
+            fact: { type: Type.STRING }
+          },
+          required: ["question", "options", "correctAnswer", "fact"]
+        }
+      }
+    });
+
+    const result = JSON.parse(response.text);
+    setCache(cacheKey, result);
+    return result;
+  } catch (error) {
+    logError(error as Error, { location });
+    return {
+      question: "ما هو شعورك وأنت تتأمل هذا المعلم التاريخي الآن؟",
+      options: ["انبهار بالتاريخ", "هدوء نفسي", "ارتباط بالمكان"],
+      correctAnswer: "ارتباط بالمكان",
+      fact: "هذا المكان شهد آلاف القصص عبر العصور."
+    };
+  }
 };
 
 export const generateStory = async (intervention: string, neighborhood?: string, base64Image?: string) => {
@@ -46,7 +109,7 @@ export const generateStory = async (intervention: string, neighborhood?: string,
       config: { 
         temperature: 0.9, 
         topP: 0.95,
-        thinkingConfig: { thinkingBudget: 0 } 
+        // تم إزالة thinkingBudget: 0 لأن موديل Pro يتطلب ميزانية تفكير ولا يدعم الصفر
       }
     });
 

@@ -8,22 +8,71 @@ export enum InterventionType {
 }
 
 export type MediaType = 'video' | 'audio' | 'image' | 'multimodal';
+export type TourTheme = 'heritage' | 'gastronomy' | 'art' | 'architecture' | 'custom';
+export type AuthorType = 'artist' | 'ai' | 'hybrid';
 
-export type TourTheme = 'heritage' | 'gastronomy' | 'art' | 'architecture';
+// --- Advanced Template System Types ---
 
-export interface PathPoint {
-  id: string;
+export interface TemplateVariable {
   name: string;
-  latitude: number;
-  longitude: number;
-  order: number;
+  label: string;
+  type: 'text' | 'number' | 'image' | 'audio' | 'location' | 'select';
+  options?: string[];
+  default?: any;
+  required: boolean;
 }
 
-export interface ExternalAsset {
+export interface TemplateComponent {
   id: string;
-  label: string;
-  url: string;
-  provider: 'drive' | 'dropbox' | 'custom' | 'cloud';
+  name: string;
+  type: 'audio_narration' | 'visual_art' | 'interactive_quiz' | 'place_info';
+  interventionType: InterventionType;
+  config: any;
+  conditions?: string[];
+}
+
+export interface TemplateLogic {
+  trigger: 'on_start' | 'on_component_complete' | 'on_tour_finish';
+  action: 'unlock_next' | 'generate_visual' | 'send_notification' | 'award_badge';
+  params: any;
+}
+
+export interface DynamicTemplate {
+  id: string;
+  name: string;
+  description: string;
+  icon: string;
+  category: 'education' | 'tourism' | 'art_curation';
+  components: TemplateComponent[];
+  variables: TemplateVariable[];
+  logic: TemplateLogic[];
+}
+
+// --- Existing Types ---
+
+export interface TourUIConfig {
+  primaryColor: string;
+  accentColor: string;
+  fontFamily: 'Cairo' | 'Amiri';
+  backgroundImage?: string;
+  introGifUrl?: string;
+  buttonShape?: 'rounded' | 'pill' | 'sharp';
+  glassEffect?: boolean;
+  cardStyle?: 'minimal' | 'flat' | 'elevated';
+  welcomeMessage?: string;
+  viewMode: 'map' | 'gallery' | 'story';
+}
+
+export interface CuratedTour {
+  id: string;
+  name: string;
+  description: string;
+  stops: string[];
+  theme: TourTheme;
+  isOfficial?: boolean;
+  city?: string;
+  ui_config?: TourUIConfig;
+  curator_name?: string;
 }
 
 export interface InterventionItem {
@@ -38,20 +87,13 @@ export interface InterventionItem {
   interactCount: number;
   mediaUrl?: string;
   audioUrl?: string;
-  title?: string;
-  pathPoints?: PathPoint[];
-  themes?: TourTheme[];
-  externalAssets?: ExternalAsset[];
-  curatorNotes?: string;
-}
-
-export interface CuratedTour {
-  id: string;
-  name: string;
-  description: string;
-  stops: string[]; // IDs of interventions
-  theme: TourTheme;
-  isOfficial?: boolean;
+  pathPoints?: { id: string; name: string; latitude: number; longitude: number; order: number }[];
+  
+  // Collaborative Fields
+  authorType: AuthorType;
+  artistName?: string;
+  curatorNote?: string;
+  rawArtistNotes?: string;
 }
 
 export interface ArtPiece {
@@ -65,8 +107,24 @@ export interface ArtPiece {
   year: string;
 }
 
-export interface AudioState {
-  isPlaying: boolean;
-  isLoading: boolean;
-  error: string | null;
+export interface StopInteraction {
+  question: string;
+  options: string[];
+  correctAnswer: string;
+  fact: string;
+}
+
+export interface ExperiencePackage {
+  id: string;
+  name: string;
+  description: string;
+  creator: string;
+  downloads: number;
+  rating: number;
+  interventions: InterventionItem[];
+  tours: CuratedTour[];
+  thumbnail: string;
+  category: 'heritage' | 'art' | 'gastronomy' | 'education';
+  tags: string[];
+  isOfficial: boolean;
 }
