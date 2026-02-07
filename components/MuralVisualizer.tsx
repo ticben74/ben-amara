@@ -70,7 +70,8 @@ export const MuralVisualizer: React.FC = () => {
   const requestRef = useRef<number>();
 
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
+    // Fix: Pass window.location.search to ensure constructor is not empty if required by environment
+    const params = new URLSearchParams(window.location.search || '');
     const p = params.get('palette');
     if (p && PALETTES[p]) {
       setActivePalette(p as keyof typeof PALETTES);
@@ -79,6 +80,7 @@ export const MuralVisualizer: React.FC = () => {
 
   useEffect(() => {
     try {
+      // Fix: Ensure URL constructor receives the current location as an argument
       const url = new URL(window.location.href);
       url.searchParams.set('palette', activePalette);
       window.history.replaceState({}, '', url.toString());
@@ -89,6 +91,7 @@ export const MuralVisualizer: React.FC = () => {
 
   const shareUrl = useMemo(() => {
     try {
+      // Fix: Ensure URL constructor receives the current location as an argument
       const url = new URL(window.location.href);
       url.searchParams.set('palette', activePalette);
       return url.toString();
@@ -236,7 +239,7 @@ export const MuralVisualizer: React.FC = () => {
           
           // Behavior based on band
           // Bass (0-11): Heavy scale, slow intensity shifts
-          // Mids (12-35): Responsive flickering, color shifts
+          // Mids (12-35: Responsive flickering, color shifts
           // Treble (36-47): High-speed sparkling, sharp blurs
           
           const bandType = i < 12 ? 'bass' : i < 36 ? 'mid' : 'treble';

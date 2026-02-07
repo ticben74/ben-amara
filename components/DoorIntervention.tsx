@@ -120,7 +120,10 @@ export const DoorIntervention: React.FC = () => {
           const source = ctx.createBufferSource();
           source.buffer = buffer;
           source.connect(ctx.destination);
-          source.onstart = () => setIsPlaying(true);
+          
+          // Fix: AudioBufferSourceNode doesn't have an onstart property.
+          // Setting the play state manually before starting the audio.
+          setIsPlaying(true);
           source.onended = () => setIsPlaying(false);
           source.start();
           sourceRef.current = source;
