@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { CuratedTour, TourUIConfig } from '../types';
+import { CuratedTour, TourUIConfig, WidgetType, CustomLink } from '../types';
 import { FileUploader } from './FileUploader';
 
 interface Props {
@@ -8,6 +8,15 @@ interface Props {
   onSave: (updatedTour: CuratedTour) => void;
   onCancel: () => void;
 }
+
+const WIDGET_OPTIONS: { id: WidgetType; name: string; icon: string }[] = [
+  { id: 'map', name: 'الخريطة المكانية', icon: '🗺️' },
+  { id: 'competition', name: 'المسابقات والجوائز', icon: '🏆' },
+  { id: 'surprise', name: 'صندوق المفاجآت', icon: '🎁' },
+  { id: 'discovery', name: 'جولات أخرى والمتجر', icon: '🛍️' },
+  { id: 'links', name: 'مربع الروابط المخصصة', icon: '🔗' },
+  { id: 'furnishing', name: 'تخصيص الزائر (UI)', icon: '🎨' },
+];
 
 export const TourDesigner: React.FC<Props> = ({ tour, onSave, onCancel }) => {
   const [config, setConfig] = useState<TourUIConfig>(tour.ui_config || {
@@ -17,8 +26,31 @@ export const TourDesigner: React.FC<Props> = ({ tour, onSave, onCancel }) => {
     viewMode: 'map',
     buttonShape: 'rounded',
     glassEffect: true,
-    cardStyle: 'elevated'
+    cardStyle: 'elevated',
+    enabledWidgets: ['map', 'competition', 'discovery'],
+    customLinks: []
   });
+
+  const [newLink, setNewLink] = useState({ title: '', url: '', icon: '🔗', color: 'bg-indigo-600' });
+
+  const toggleWidget = (id: WidgetType) => {
+    const current = config.enabledWidgets || [];
+    const updated = current.includes(id) 
+      ? current.filter(w => w !== id) 
+      : [...current, id];
+    setConfig({ ...config, enabledWidgets: updated });
+  };
+
+  const addLink = () => {
+    if (!newLink.title || !newLink.url) return;
+    const link: CustomLink = { ...newLink, id: 'link-' + Date.now() };
+    setConfig({ ...config, customLinks: [...(config.customLinks || []), link] });
+    setNewLink({ title: '', url: '', icon: '🔗', color: 'bg-indigo-600' });
+  };
+
+  const removeLink = (id: string) => {
+    setConfig({ ...config, customLinks: (config.customLinks || []).filter(l => l.id !== id) });
+  };
 
   const handleSave = () => {
     onSave({ ...tour, ui_config: config });
@@ -26,192 +58,137 @@ export const TourDesigner: React.FC<Props> = ({ tour, onSave, onCancel }) => {
 
   return (
     <div className="flex flex-col h-full bg-[#0a0f1e] text-right font-cairo overflow-hidden">
-      {/* Top Bar */}
       <div className="p-6 md:p-8 border-b border-slate-800 bg-slate-900/50 backdrop-blur-xl flex justify-between items-center z-50">
          <div className="flex gap-4">
-           <button onClick={handleSave} className="bg-indigo-600 hover:bg-indigo-500 text-white px-10 py-3.5 rounded-2xl font-black text-xs uppercase tracking-widest shadow-2xl shadow-indigo-600/20 transition-all active:scale-95">اعتماد التصميم</button>
+           <button onClick={handleSave} className="bg-indigo-600 hover:bg-indigo-500 text-white px-10 py-3.5 rounded-2xl font-black text-xs uppercase tracking-widest shadow-2xl transition-all active:scale-95">حفظ التصميم</button>
            <button onClick={onCancel} className="text-slate-500 hover:text-white px-6 font-bold text-xs uppercase">إلغاء</button>
          </div>
          <div className="text-right">
-            <h3 className="text-2xl font-black text-white">استوديو <span className="text-indigo-400">تأثيث الواجهة</span></h3>
-            <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest mt-1">Live Mobile UI Design Studio</p>
+            <h3 className="text-2xl font-black text-white">استوديو <span className="text-indigo-400">تأثيث التجربة</span></h3>
+            <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest mt-1">Creative Interface Orchestration</p>
          </div>
       </div>
 
       <div className="flex-1 flex flex-col lg:flex-row overflow-hidden">
-        {/* Editor Sidebar */}
-        <div className="lg:w-[450px] border-l border-slate-800 p-8 space-y-10 overflow-y-auto custom-scrollbar bg-slate-900/20 shadow-2xl">
+        <div className="lg:w-[500px] border-l border-slate-800 p-8 space-y-12 overflow-y-auto custom-scrollbar bg-slate-900/20 shadow-2xl">
            
-           {/* Section 1: Assets */}
+           {/* Section 1: Welcome Message */}
            <div className="space-y-6">
-              <label className="text-[10px] font-black text-indigo-400 uppercase tracking-[0.3em] block border-b border-slate-800 pb-3">1. تأثيث الأصول البصرية (GIFs)</label>
-              
-              <div className="space-y-4">
-                <span className="text-[11px] font-bold text-slate-300">أيقونة الجولة المتحركة (GIF URL)</span>
-                <div className="space-y-3">
-                  <input 
-                    type="url" 
-                    placeholder="رابط GIF مباشر (أو ارفعه بالأسفل)..." 
-                    value={config.introGifUrl || ''} 
-                    onChange={e => setConfig({...config, introGifUrl: e.target.value})}
-                    className="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white text-[10px] outline-none focus:border-indigo-500 transition-all"
-                  />
-                  <FileUploader 
-                    mediaType="image" 
-                    label="رفع GIF مخصص" 
-                    accept="image/gif"
-                    onUploadComplete={(url) => setConfig({...config, introGifUrl: url})} 
-                  />
+              <label className="text-[10px] font-black text-indigo-400 uppercase tracking-[0.3em] block border-b border-slate-800 pb-3">1. رسائل الواجهة الترحيبية</label>
+              <textarea 
+                placeholder="اكتب رسالة ترحيب تظهر للزائر عند فتح الجولة..." 
+                value={config.welcomeMessage || ''} 
+                onChange={e => setConfig({...config, welcomeMessage: e.target.value})}
+                className="w-full bg-slate-950 border border-slate-800 rounded-2xl px-6 py-4 text-white text-sm outline-none focus:border-indigo-500 h-24 resize-none"
+              />
+           </div>
+
+           {/* Section 2: Widget Selection */}
+           <div className="space-y-6">
+              <label className="text-[10px] font-black text-indigo-400 uppercase tracking-[0.3em] block border-b border-slate-800 pb-3">2. اختيار المربعات (Widgets)</label>
+              <div className="grid grid-cols-1 gap-3">
+                 {WIDGET_OPTIONS.map(widget => {
+                   const isActive = (config.enabledWidgets || []).includes(widget.id);
+                   return (
+                     <button 
+                       key={widget.id}
+                       onClick={() => toggleWidget(widget.id)}
+                       className={`flex items-center justify-between p-4 rounded-2xl border transition-all ${isActive ? 'bg-indigo-600/10 border-indigo-500 shadow-lg' : 'bg-slate-800/40 border-slate-800 opacity-60 hover:opacity-100'}`}
+                     >
+                       <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all ${isActive ? 'bg-indigo-500 border-indigo-400' : 'border-slate-700'}`}>
+                          {isActive && <span className="text-white text-[10px]">✓</span>}
+                       </div>
+                       <div className="flex items-center gap-3">
+                          <span className="text-white font-black text-xs">{widget.name}</span>
+                          <span className="text-lg">{widget.icon}</span>
+                       </div>
+                     </button>
+                   );
+                 })}
+              </div>
+           </div>
+
+           {/* Section 3: Custom Links */}
+           <div className="space-y-6">
+              <label className="text-[10px] font-black text-indigo-400 uppercase tracking-[0.3em] block border-b border-slate-800 pb-3">3. إضافة روابط ومعرفات (Store, IG, etc.)</label>
+              <div className="space-y-4 bg-slate-950/40 p-6 rounded-[2rem] border border-slate-800">
+                <input 
+                   type="text" 
+                   placeholder="عنوان الرابط (مثل: متجرنا)" 
+                   value={newLink.title} 
+                   onChange={e => setNewLink({...newLink, title: e.target.value})}
+                   className="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-white text-xs outline-none" 
+                />
+                <input 
+                   type="url" 
+                   placeholder="الرابط الكامل (https://...)" 
+                   value={newLink.url} 
+                   onChange={e => setNewLink({...newLink, url: e.target.value})}
+                   className="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-white text-xs outline-none" 
+                />
+                <div className="flex gap-2">
+                   <select 
+                     value={newLink.icon} 
+                     onChange={e => setNewLink({...newLink, icon: e.target.value})}
+                     className="bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-white text-xs outline-none"
+                   >
+                     <option value="🔗">🔗 رابط</option>
+                     <option value="🛍️">🛍️ متجر</option>
+                     <option value="📸">📸 إنستغرام</option>
+                     <option value="🧭">🧭 خريطة</option>
+                     <option value="🎫">🎫 تذاكر</option>
+                   </select>
+                   <button onClick={addLink} className="flex-1 bg-indigo-600 text-white font-black text-[10px] rounded-xl uppercase">إضافة الرابط</button>
                 </div>
               </div>
 
-              <div className="space-y-4">
-                <span className="text-[11px] font-bold text-slate-300">خلفية التطبيق المخصصة</span>
-                <FileUploader 
-                  mediaType="image" 
-                  label="تغيير نمط الخلفية" 
-                  onUploadComplete={(url) => setConfig({...config, backgroundImage: url})} 
-                />
-              </div>
-           </div>
-
-           {/* Section 2: UI Geometry */}
-           <div className="space-y-6">
-              <label className="text-[10px] font-black text-indigo-400 uppercase tracking-[0.3em] block border-b border-slate-800 pb-3">2. هندسة المكونات (Geometry)</label>
-              
-              <div className="space-y-4">
-                 <span className="text-[11px] font-bold text-slate-300 block">شكل الأزرار والعناصر التفاعلية</span>
-                 <div className="grid grid-cols-3 gap-3">
-                    {[
-                      { id: 'rounded', label: 'دائري ناعم' },
-                      { id: 'pill', label: 'بيضاوي كامل' },
-                      { id: 'sharp', label: 'حاد الزوايا' }
-                    ].map(shape => (
-                      <button 
-                        key={shape.id} 
-                        onClick={() => setConfig({...config, buttonShape: shape.id as any})}
-                        className={`py-3 text-[10px] font-black uppercase rounded-xl border transition-all ${config.buttonShape === shape.id ? 'bg-indigo-600 border-indigo-500 text-white' : 'bg-slate-800 border-slate-700 text-slate-500 hover:border-slate-500'}`}
-                      >
-                        {shape.label}
-                      </button>
-                    ))}
-                 </div>
-              </div>
-
-              <div className="p-5 bg-slate-800/40 rounded-3xl border border-slate-700 flex items-center justify-between group transition-all hover:border-indigo-500/30">
-                 <div className="text-right">
-                    <span className="text-[11px] font-bold text-white block">تأثير الزجاج (Glassmorphism)</span>
-                    <span className="text-[8px] text-slate-500 uppercase font-black">Transparency & Blur</span>
-                 </div>
-                 <button 
-                    onClick={() => setConfig({...config, glassEffect: !config.glassEffect})}
-                    className={`w-14 h-7 rounded-full transition-all relative ${config.glassEffect ? 'bg-indigo-600' : 'bg-slate-700'}`}
-                 >
-                    <div className={`absolute top-1 w-5 h-5 bg-white rounded-full transition-all ${config.glassEffect ? 'right-8' : 'right-1'}`}></div>
-                 </button>
-              </div>
-           </div>
-
-           {/* Section 3: Identity & Colors */}
-           <div className="space-y-6">
-              <label className="text-[10px] font-black text-indigo-400 uppercase tracking-[0.3em] block border-b border-slate-800 pb-3">3. ألوان الهوية والخطوط</label>
-              <div className="flex gap-2 flex-wrap justify-end">
-                 {['#4f46e5', '#f43f5e', '#10b981', '#f59e0b', '#0ea5e9', '#d946ef', '#ffffff'].map(color => (
-                   <button 
-                     key={color} 
-                     onClick={() => setConfig({...config, primaryColor: color})}
-                     className={`w-10 h-10 rounded-full border-2 transition-all ${config.primaryColor === color ? 'border-white scale-110 shadow-lg' : 'border-transparent opacity-60'}`}
-                     style={{ backgroundColor: color }}
-                   />
+              <div className="space-y-3">
+                 {config.customLinks?.map(link => (
+                   <div key={link.id} className="flex items-center justify-between p-4 bg-slate-950/60 border border-slate-800 rounded-xl">
+                      <button onClick={() => removeLink(link.id)} className="text-red-500 text-xs">حذف</button>
+                      <div className="flex items-center gap-3">
+                        <div className="text-right">
+                           <div className="text-white font-black text-[10px]">{link.title}</div>
+                           <div className="text-[8px] text-slate-500 truncate max-w-[150px]">{link.url}</div>
+                        </div>
+                        <span className="text-xl">{link.icon}</span>
+                      </div>
+                   </div>
                  ))}
               </div>
-              <div className="grid grid-cols-2 gap-3">
-                 <button onClick={() => setConfig({...config, fontFamily: 'Cairo'})} className={`py-3.5 rounded-xl border text-[10px] font-black ${config.fontFamily === 'Cairo' ? 'bg-white text-slate-900 border-white shadow-lg' : 'bg-slate-800 text-slate-400 border-slate-700'}`}>خط القاهرة</button>
-                 <button onClick={() => setConfig({...config, fontFamily: 'Amiri'})} className={`py-3.5 rounded-xl border text-[10px] font-black ${config.fontFamily === 'Amiri' ? 'bg-white text-slate-900 border-white shadow-lg' : 'bg-slate-800 text-slate-400 border-slate-700 font-amiri text-sm'}`}>خط أميري (تراثي)</button>
-              </div>
-           </div>
-
-           <div className="space-y-4">
-              <label className="text-[10px] font-black text-indigo-400 uppercase tracking-[0.3em] block border-b border-slate-800 pb-3">4. رسائل الواجهة</label>
-              <textarea 
-                value={config.welcomeMessage}
-                onChange={e => setConfig({...config, welcomeMessage: e.target.value})}
-                placeholder="اكتب رسالة ترحيبية تظهر في بداية المسار..."
-                className="w-full bg-slate-800 border border-slate-700 rounded-2xl p-6 text-white text-xs text-right outline-none focus:border-indigo-500 h-32 resize-none shadow-inner"
-              />
            </div>
         </div>
 
-        {/* Live Preview Emulator */}
+        {/* Emulator Preview */}
         <div className="flex-1 bg-[#050810] p-10 flex items-center justify-center relative overflow-hidden">
-           <div className="absolute inset-0 opacity-[0.05] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#4f46e5 1px, transparent 1px)', backgroundSize: '30px 30px' }}></div>
-           
-           <div className="w-[360px] h-[720px] bg-slate-950 rounded-[4rem] border-[12px] border-slate-800 shadow-[0_0_120px_rgba(0,0,0,0.8)] overflow-hidden relative flex flex-col animate-scale-up">
-              
-              {/* Fake Notch */}
-              <div className="h-8 bg-slate-900 flex items-center justify-between px-10 text-[8px] text-slate-500 font-black">
-                <span>9:41</span>
-                <div className="w-16 h-4 bg-slate-800 rounded-b-xl absolute top-0 left-1/2 -translate-x-1/2"></div>
-                <span>📶 🔋</span>
-              </div>
-
-              {/* Header Emulator */}
-              <div className={`p-8 flex justify-between items-center transition-all duration-700 ${config.glassEffect ? 'backdrop-blur-2xl bg-white/5' : 'bg-slate-900'} border-b border-white/5`}>
-                 <div className="w-10 h-10 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-xs">≡</div>
+           <div className="w-[360px] h-[720px] bg-slate-950 rounded-[4rem] border-[12px] border-slate-800 shadow-5xl overflow-hidden relative flex flex-col">
+              <div className="p-6 border-b border-white/5 bg-slate-900">
                  <div className="text-right">
-                    <h5 className={`text-sm font-black text-white ${config.fontFamily === 'Amiri' ? 'font-amiri text-lg' : ''}`}>{tour.name}</h5>
-                    <p className="text-[8px] font-bold uppercase tracking-[0.3em]" style={{ color: config.primaryColor }}>{tour.city || 'Heritage Tour'}</p>
+                    <h5 className="text-sm font-black text-white">{tour.name}</h5>
+                    <p className="text-[8px] font-bold uppercase" style={{ color: config.primaryColor }}>Live Preview</p>
                  </div>
               </div>
               
-              {/* Content Emulator */}
-              <div className="flex-1 relative overflow-hidden flex flex-col items-center justify-center p-10 text-center">
-                 {config.backgroundImage && (
-                   <img src={config.backgroundImage} className="absolute inset-0 w-full h-full object-cover opacity-10 blur-[2px] pointer-events-none" />
+              <div className="flex-1 overflow-y-auto custom-scrollbar p-6 space-y-6">
+                 {config.welcomeMessage && (
+                   <div className="p-4 bg-indigo-600/10 border border-indigo-500/20 rounded-2xl text-[10px] text-indigo-300 font-bold text-right italic">
+                     "{config.welcomeMessage}"
+                   </div>
                  )}
+                 <div className="h-40 bg-slate-900 rounded-3xl border border-white/5 flex items-center justify-center text-slate-700 font-black text-[10px] uppercase">Content Viewport</div>
                  
-                 {/* Intro GIF Preview */}
-                 {config.introGifUrl ? (
-                   <div className="relative mb-10 group">
-                      <div className="absolute -inset-6 bg-indigo-500/10 blur-3xl rounded-full animate-pulse"></div>
-                      <img src={config.introGifUrl} className="relative w-48 h-48 object-contain rounded-3xl shadow-3xl" alt="Tour Asset GIF" />
-                   </div>
-                 ) : (
-                   <div className="w-48 h-48 rounded-[3rem] bg-slate-900/50 border-2 border-dashed border-slate-800 flex flex-col items-center justify-center text-slate-600 mb-10">
-                     <span className="text-4xl mb-2">🎞️</span>
-                     <span className="text-[10px] font-black uppercase tracking-widest">GIF Preview</span>
-                   </div>
+                 {(config.enabledWidgets || []).includes('links') && config.customLinks && config.customLinks.length > 0 && (
+                    <div className="p-4 border border-white/10 rounded-2xl space-y-2">
+                       <span className="text-[8px] font-black text-slate-500 block text-right">Previewing Custom Links</span>
+                       {config.customLinks.map(l => (
+                         <div key={l.id} className="p-2 bg-white/5 rounded-lg text-[9px] text-white text-right">{l.icon} {l.title}</div>
+                       ))}
+                    </div>
                  )}
-
-                 <div className="space-y-6 relative z-10">
-                    <h6 className={`text-2xl font-black text-white leading-tight ${config.fontFamily === 'Amiri' ? 'font-amiri text-3xl italic' : ''}`}>
-                       {config.welcomeMessage || 'مرحباً بك في تجربة المدينة المنسقة'}
-                    </h6>
-                    <div className="h-1.5 w-20 mx-auto rounded-full" style={{ backgroundColor: config.primaryColor }}></div>
-                    <p className="text-[11px] text-slate-500 leading-relaxed max-w-[240px] mx-auto font-medium">ابدأ رحلتك لاستكشاف التدخلات الحضرية الموزعة في الحي.</p>
-                 </div>
-              </div>
-
-              {/* Bottom Actions Emulator */}
-              <div className={`p-10 relative z-10 transition-all ${config.glassEffect ? 'backdrop-blur-3xl bg-white/5 border-t border-white/5' : 'bg-slate-950 border-t border-slate-900'}`}>
-                 <button 
-                    className={`w-full py-6 text-xs font-black uppercase tracking-widest shadow-3xl transition-all active:scale-95
-                      ${config.buttonShape === 'pill' ? 'rounded-full' : config.buttonShape === 'sharp' ? 'rounded-none' : 'rounded-3xl'}`} 
-                    style={{ backgroundColor: config.primaryColor, color: config.primaryColor === '#ffffff' ? '#000' : '#fff' }}
-                 >
-                    بدء المسار المنسق 🧭
-                 </button>
               </div>
            </div>
         </div>
       </div>
-      
-      <style dangerouslySetInnerHTML={{ __html: `
-        .custom-scrollbar::-webkit-scrollbar { width: 5px; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
-        @keyframes scaleUp { from { opacity: 0; transform: scale(0.95) translateY(20px); } to { opacity: 1; transform: scale(1) translateY(0); } }
-        .animate-scale-up { animation: scaleUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-      `}} />
     </div>
   );
 };

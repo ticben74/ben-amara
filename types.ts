@@ -4,51 +4,24 @@ export enum InterventionType {
   MURAL = 'MURAL',
   PATH = 'PATH',
   DOOR = 'DOOR',
-  GALLERY = 'GALLERY'
+  GALLERY = 'GALLERY',
+  MARKET = 'MARKET'
 }
 
 export type MediaType = 'video' | 'audio' | 'image' | 'multimodal';
 export type TourTheme = 'heritage' | 'gastronomy' | 'art' | 'architecture' | 'custom';
 export type AuthorType = 'artist' | 'ai' | 'hybrid';
 
-// --- Advanced Template System Types ---
+// --- Widget System Types ---
+export type WidgetType = 'map' | 'competition' | 'discovery' | 'furnishing' | 'surprise' | 'links';
 
-export interface TemplateVariable {
-  name: string;
-  label: string;
-  type: 'text' | 'number' | 'image' | 'audio' | 'location' | 'select';
-  options?: string[];
-  default?: any;
-  required: boolean;
-}
-
-export interface TemplateComponent {
+export interface CustomLink {
   id: string;
-  name: string;
-  type: 'audio_narration' | 'visual_art' | 'interactive_quiz' | 'place_info';
-  interventionType: InterventionType;
-  config: any;
-  conditions?: string[];
-}
-
-export interface TemplateLogic {
-  trigger: 'on_start' | 'on_component_complete' | 'on_tour_finish';
-  action: 'unlock_next' | 'generate_visual' | 'send_notification' | 'award_badge';
-  params: any;
-}
-
-export interface DynamicTemplate {
-  id: string;
-  name: string;
-  description: string;
+  title: string;
+  url: string;
   icon: string;
-  category: 'education' | 'tourism' | 'art_curation';
-  components: TemplateComponent[];
-  variables: TemplateVariable[];
-  logic: TemplateLogic[];
+  color: string;
 }
-
-// --- Existing Types ---
 
 export interface TourUIConfig {
   primaryColor: string;
@@ -61,6 +34,8 @@ export interface TourUIConfig {
   cardStyle?: 'minimal' | 'flat' | 'elevated';
   welcomeMessage?: string;
   viewMode: 'map' | 'gallery' | 'story';
+  enabledWidgets?: WidgetType[];
+  customLinks?: CustomLink[]; // الروابط المخصصة الجديدة
 }
 
 export interface CuratedTour {
@@ -88,8 +63,6 @@ export interface InterventionItem {
   mediaUrl?: string;
   audioUrl?: string;
   pathPoints?: { id: string; name: string; latitude: number; longitude: number; order: number }[];
-  
-  // Collaborative Fields
   authorType: AuthorType;
   artistName?: string;
   curatorNote?: string;
@@ -127,4 +100,39 @@ export interface ExperiencePackage {
   category: 'heritage' | 'art' | 'gastronomy' | 'education';
   tags: string[];
   isOfficial: boolean;
+}
+
+export interface TemplateVariable {
+  name: string;
+  label: string;
+  type: 'text' | 'select' | 'textarea' | 'number';
+  options?: string[];
+  required?: boolean;
+  default?: any;
+}
+
+export interface TemplateComponent {
+  id: string;
+  name: string;
+  type: string;
+  interventionType: InterventionType;
+  config: Record<string, any>;
+  conditions?: string[];
+}
+
+export interface TemplateLogic {
+  trigger: string;
+  action: string;
+  params: Record<string, any>;
+}
+
+export interface DynamicTemplate {
+  id: string;
+  name: string;
+  description: string;
+  icon: string;
+  category: string;
+  variables: TemplateVariable[];
+  components: TemplateComponent[];
+  logic: TemplateLogic[];
 }

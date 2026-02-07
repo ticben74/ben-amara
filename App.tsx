@@ -121,11 +121,18 @@ const App: React.FC = () => {
       <TourPWAView 
         tour={activeTour} 
         interventions={interventions} 
+        allTours={curatedTours} // تمرير كافة الجولات لتمكين الاكتشاف
         onExit={() => {
           setCurrentView('platform');
           setActiveTour(null);
           window.history.replaceState({}, '', window.location.pathname);
         }} 
+        onSwitchTour={(tour) => {
+          setActiveTour(tour);
+          const url = new URL(window.location.href);
+          url.searchParams.set('tourId', tour.id);
+          window.history.replaceState({}, '', url.toString());
+        }}
       />
     );
   }
@@ -200,16 +207,12 @@ const App: React.FC = () => {
                    <div className="bg-slate-900/80 rounded-[5rem] border border-slate-800/50 p-6 shadow-4xl min-h-[750px] overflow-hidden backdrop-blur-md relative">
                       {renderSimulator()}
                       
-                      {/* زر المشاركة والـ QR العائم */}
                       <button 
                         onClick={() => setIsShareModalOpen(true)}
                         className="absolute bottom-12 right-12 w-20 h-20 bg-white text-slate-900 rounded-full shadow-[0_20px_60px_rgba(0,0,0,0.4)] flex items-center justify-center text-3xl hover:scale-110 active:scale-95 transition-all z-30 group"
                         title="عرض رمز الاستجابة السريعة ورابط المشاركة"
                       >
                         <span className="group-hover:rotate-12 transition-transform">📱</span>
-                        <div className="absolute -top-14 right-0 bg-indigo-600 text-white text-[10px] font-black px-4 py-2 rounded-xl opacity-0 group-hover:opacity-100 transition-all whitespace-nowrap shadow-xl">
-                          رمز الاستجابة والرابط
-                        </div>
                       </button>
                    </div>
                 </section>
@@ -238,7 +241,6 @@ const App: React.FC = () => {
         )}
       </main>
 
-      {/* نافذة المشاركة العامة */}
       <ShareModal 
         item={activeIntervention} 
         isOpen={isShareModalOpen} 

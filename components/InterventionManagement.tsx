@@ -19,12 +19,14 @@ interface Props {
   onClearPendingType?: () => void;
 }
 
+// Added missing InterventionType.MARKET to satisfy Record<InterventionType, string> and fix TS error
 const TYPE_LABELS: Record<InterventionType, string> = {
   [InterventionType.BENCH]: 'مقعد حكايا صوتي',
   [InterventionType.MURAL]: 'جدارية بصرية',
   [InterventionType.PATH]: 'ممر غامر',
   [InterventionType.DOOR]: 'بوابة نكهات',
-  [InterventionType.GALLERY]: 'معرض رقمي'
+  [InterventionType.GALLERY]: 'معرض رقمي',
+  [InterventionType.MARKET]: 'سوق تفاعلي'
 };
 
 export const InterventionManagement: React.FC<Props> = ({ 
