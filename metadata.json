@@ -1,6 +1,6 @@
 {
-  "name": "Creative Urban3",
-  "description": "An interactive showcase of innovative urban audio interventions including story benches, visual frequency murals, and immersive walking paths.",
+  "name": "صدى المدينة | Urban Echoes",
+  "description": "منصة تفاعلية لاستكشاف التدخلات الحضرية الإبداعية: مقاعد سردية، جداريات ترددية، ومسارات غامرة تعيد أنسنة الفضاء العام.",
   "requestFramePermissions": [
     "camera",
     "microphone",
