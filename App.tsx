@@ -16,6 +16,10 @@ import { ExperienceGenerator } from './components/ExperienceGenerator';
 import { ShareModal } from './components/ShareModal';
 import { updateInterventionSEO } from './services/seoService';
 
+// Fix: Defined missing type definitions for ViewType and ShowcaseMode
+type ViewType = 'platform' | 'vault' | 'management' | 'pwa-tour' | 'landing-page' | 'generator';
+type ShowcaseMode = 'grid' | 'map';
+
 const INITIAL_DATA: InterventionItem[] = [
   { id: '1', type: InterventionType.BENCH, mediaType: 'audio', location: 'حديقة الأزهر، القاهرة', latitude: 30.0406, longitude: 31.2635, status: 'active', lastUpdated: '2024-05-10', interactCount: 1240, authorType: 'artist', mediaUrl: 'https://images.unsplash.com/photo-1548013146-72479768bbaa?auto=format&fit=crop&q=80&w=800' },
   { id: '2', type: InterventionType.MURAL, mediaType: 'image', location: 'وسط البلد، بيروت', latitude: 33.8938, longitude: 35.5018, status: 'active', lastUpdated: '2024-05-12', interactCount: 850, authorType: 'artist', mediaUrl: 'https://images.unsplash.com/photo-1541963463532-d68292c34b19?auto=format&fit=crop&q=80&w=800' },
@@ -28,9 +32,6 @@ const INITIAL_TOURS: CuratedTour[] = [
   { id: 't1', name: 'مسار ذاكرة القاهرة القديمة', city: 'القاهرة', description: 'جولة سردية تربط المقاعد التاريخية بالأبواب العتيقة.', stops: ['1', '4'], theme: 'heritage', isOfficial: true, ui_config: { primaryColor: '#c2410c', accentColor: '#f59e0b', fontFamily: 'Amiri', viewMode: 'map', buttonShape: 'rounded', glassEffect: true, cardStyle: 'elevated', welcomeMessage: 'أهلاً بك في ذاكرة الألف عام.' } },
   { id: 't2', name: 'نبض الرياض الرقمي', city: 'الرياض', description: 'تجربة بصرية تفاعلية تستشرف مستقبل الفن الحضري.', stops: ['2', '5'], theme: 'art', isOfficial: true, ui_config: { primaryColor: '#4f46e5', accentColor: '#818cf8', fontFamily: 'Cairo', viewMode: 'map', buttonShape: 'pill', glassEffect: true, cardStyle: 'minimal', welcomeMessage: 'استكشف التداخل بين الفن والتقنية.' } }
 ];
-
-type ViewType = 'platform' | 'vault' | 'management' | 'pwa-tour' | 'landing-page' | 'generator';
-type ShowcaseMode = 'grid' | 'map';
 
 const App: React.FC = () => {
   const [currentView, setCurrentView] = useState<ViewType>('platform');
@@ -184,7 +185,16 @@ const App: React.FC = () => {
                     <div className="space-y-5">
                       {sidebarMode === 'interventions' ? (
                         interventions.map((item, idx) => (
-                          <InterventionCard key={item.id} id={idx + 1} title={item.location} description={item.type} icon={<span>📍</span>} active={!activeTour && activeIntervention.id === item.id} onClick={() => handleSelectIntervention(item)} />
+                          <InterventionCard 
+                            key={item.id} 
+                            id={idx + 1} 
+                            title={item.location.split('،')[0]} 
+                            location={item.location}
+                            description={item.type} 
+                            icon={<span>📍</span>} 
+                            active={!activeTour && activeIntervention.id === item.id} 
+                            onClick={() => handleSelectIntervention(item)} 
+                          />
                         ))
                       ) : (
                         curatedTours.map((tour) => (
